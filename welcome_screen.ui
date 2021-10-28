@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
-    <height>900</height>
+    <width>1440</width>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>-20</x>
      <y>-20</y>
-     <width>1420</width>
-     <height>920</height>
+     <width>1440</width>
+     <height>940</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -61,7 +61,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Sign in or Create a New Account</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="login">
+   <widget class="QPushButton" name="loginbtn">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -79,7 +79,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Log in</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="create_new_account">
+   <widget class="QPushButton" name="createAccountbtn">
     <property name="geometry">
      <rect>
       <x>550</x>

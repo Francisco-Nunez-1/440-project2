@@ -11,38 +11,47 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel
 import sqlite3
+import webbrowser
 
 
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
-class welcome_screen(QDialog):
+class WelcomeScreen(QDialog):
     def __init__(self):
-        super(welcome_screen, self).__init__()
+        super(WelcomeScreen, self).__init__()
         # load the gui to our python code
         loadUi("welcome_screen.ui", self)
-        # this will command to go to login screen when button clicked
-        self.login.clicked.connect(self.gotologin)
+        # this will command to go to gotoLogin function when the button is clicked
+        self.loginbtn.clicked.connect(self.goto_login)
+        # this will command to go to gotocreateAccount function when the button is clicked
+        self.createAccountbtn.clicked.connect(self.goto_CreateAccount)
 
-    def gotologin(self):
-        # this will open the new window in the current window
-        login = Login_screen()
+    def goto_login(self):
+        # this will open the new login window in the current window by calling the .ui class
+        login = LoginScreen()
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+    def goto_CreateAccount(self):
+        # this will open the new create account window in the current window by calling the .ui class
+        create_account = CreateAccountScreen()
+        widget.addWidget(create_account)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
-class Login_screen(QDialog):
+
+class LoginScreen(QDialog):
     def __init__(self):
-        super(Login_screen, self).__init__()
+        super(LoginScreen, self).__init__()
         # load the gui to our python code
         loadUi("login.ui", self)
         # This line will hide the password as its type in
         self.password_textbx.setEchoMode(QtWidgets.QLineEdit.Password)
         # connect to function to do next after login button is clicked
-        self.login.clicked.connect(self.loginfunction)
+        self.loginbtn.clicked.connect(self.login_function)
 
-    def loginfunction(self):
+    def login_function(self):
         # extracting the user and password
         typed_user = self.username_textbx.text()
         typed_password = self.password_textbx.text()
@@ -72,12 +81,75 @@ class Login_screen(QDialog):
 
 
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
-# *******************************************************************************************************
+# ***************************************************************************************************************
+
+def nextpage_function():
+    # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
+    second_page_create_account = SecondCreateAccountScreen()
+    widget.addWidget(second_page_create_account)
+    widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    # # extracting the user and password
+    # typed_fname = self.fname_textbx.text()
+    # typed_lname = self.lname_textbx.text()
+    # typed_user = self.username_textbx.text()
+    # typed_password = self.password_textbx.text()
+    # retyped_password = self.confirmPassword_textbx.text()
+    # typed_email = self.email_textbx.text()
+    # typed_phonenumber = self.phonenumber_textbx.text()
+    #
+    # # check fields arent blank
+    # if len(typed_fname) == 0 or len(typed_lname) == 0 or len(typed_user) == 0 or len(typed_password) == 0 \
+    #         or len(retyped_password) == 0 or len(typed_email) == 0 or len(typed_phonenumber) == 0:
+    #     self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
+    #
+    # else:
+    #     # this will command to go to gotocreateAccount function when the button is clicked
+    #     self.nextbtn.clicked.connect(self.SecondCreateAccountScreen)
+
+
+class CreateAccountScreen(QDialog):
+    def __init__(self):
+        super(CreateAccountScreen, self).__init__()
+        # load the gui to our python code
+        loadUi("create_account_both.ui", self)
+
+        # This line will hide the password as its type in
+        self.password_textbx.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.confirmPassword_textbx.setEchoMode(QtWidgets.QLineEdit.Password)
+
+        # when next button is clicked it will go to nextpage_funtion
+        self.nextbtn.clicked.connect(nextpage_function)
+
+
+# this is for link
+class HyperlinkLabel(QDialog):
+    def __init__(self, parent=None):
+        super().__init__()
+        self.setStyleSheet('font-size: 35px')
+        self.setOpenExternalLinks(True)
+        self.setParent(parent)
+
+
+class SecondCreateAccountScreen(QDialog):
+    def __init__(self):
+        super(SecondCreateAccountScreen, self).__init__()
+        # load the gui to our python code
+        loadUi("second_create_account.ui", self)
+
+        # this is for link/ place holders should be available
+        # https://learndataanalysis.org/create-hyperlinks-pyqt5-tutorial/
+        linkTemplate = '<a href={0}>{1}</a>'
+
+        # linklbl = HyperlinkLabel(self)
+        self.linklbl.setText(linkTemplate.format('https://Google.com', 'Google.com'))
+
 
 # main
+# show gui
 app = QApplication(sys.argv)
-welcome = welcome_screen()
-# this will stack many widgets on top of eachother so we can move between screens
+welcome = WelcomeScreen()
+# this will stack many widgets on top of each other so we can move between screens
 widget = QStackedWidget()
 # pass in the screen
 widget.addWidget(welcome)

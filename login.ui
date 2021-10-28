@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
-    <height>900</height>
+    <width>1440</width>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="bgwidget" native="true">
    <property name="geometry">
     <rect>
-     <x>-20</x>
-     <y>-20</y>
-     <width>1420</width>
-     <height>920</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1440</width>
+     <height>940</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -61,7 +61,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Sign in to your account </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="login">
+   <widget class="QPushButton" name="loginbtn">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -105,7 +105,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="usernamelbl">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -121,7 +121,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Username :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="passwordlbl">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -157,10 +157,10 @@ color:red;</string>
    <zorder>username_textbx</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>login</zorder>
+   <zorder>loginbtn</zorder>
    <zorder>password_textbx</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
+   <zorder>usernamelbl</zorder>
+   <zorder>passwordlbl</zorder>
    <zorder>error_lbl</zorder>
   </widget>
  </widget>
