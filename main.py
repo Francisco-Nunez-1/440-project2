@@ -139,10 +139,10 @@ class SecondCreateAccountScreen(QDialog):
 
         # this is for link/ place holders should be available
         # https://learndataanalysis.org/create-hyperlinks-pyqt5-tutorial/
-        linkTemplate = '<a href={0}>{1}</a>'
+        linkTemplate = "<a href='https://www.16personalities.com/free-personality-test'>'Myers–Briggs'</a>"
 
         # linklbl = HyperlinkLabel(self)
-        self.linklbl.setText(linkTemplate.format('https://Google.com', 'Google.com'))
+        self.linklbl.setText(linkTemplate)
 
 
 # main
