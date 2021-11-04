@@ -1,6 +1,4 @@
 # TO DO
-# Type questions in pycharm and link it to the label, like how did the errorlbl
-# delete background color of the labels for page 1 mentor question and update objectnames on designer
 # functionality for back button
 # add numbers to the slider as its slides
 
