@@ -1,17 +1,15 @@
 # TO DO
-# center the login window
-# add the database
-# screen for after one logs in
-# screen for creating a new user, in this have to ask if mentor or mentee, myers briggs code,...
-# ...link to myers briggs website, and idk what else will be asked in this page
-# back-end functionality after that.
+# Type questions in pycharm and link it to the label, like how did the errorlbl
+# delete background color of the labels for page 1 mentor question and update objectnames on designer
+# functionality for back button
+# add numbers to the slider as its slides
 
 
 # # Imports to run Qt5
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QRadioButton
 import sqlite3
 import webbrowser
 
@@ -41,6 +39,7 @@ class WelcomeScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
+# Show the login screen
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
@@ -83,31 +82,6 @@ class LoginScreen(QDialog):
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
 # ***************************************************************************************************************
 
-def nextpage_function():
-    # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
-    second_page_create_account = SecondCreateAccountScreen()
-    widget.addWidget(second_page_create_account)
-    widget.setCurrentIndex(widget.currentIndex() + 1)
-
-    # # extracting the user and password
-    # typed_fname = self.fname_textbx.text()
-    # typed_lname = self.lname_textbx.text()
-    # typed_user = self.username_textbx.text()
-    # typed_password = self.password_textbx.text()
-    # retyped_password = self.confirmPassword_textbx.text()
-    # typed_email = self.email_textbx.text()
-    # typed_phonenumber = self.phonenumber_textbx.text()
-    #
-    # # check fields arent blank
-    # if len(typed_fname) == 0 or len(typed_lname) == 0 or len(typed_user) == 0 or len(typed_password) == 0 \
-    #         or len(retyped_password) == 0 or len(typed_email) == 0 or len(typed_phonenumber) == 0:
-    #     self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
-    #
-    # else:
-    #     # this will command to go to gotocreateAccount function when the button is clicked
-    #     self.nextbtn.clicked.connect(self.SecondCreateAccountScreen)
-
-
 class CreateAccountScreen(QDialog):
     def __init__(self):
         super(CreateAccountScreen, self).__init__()
@@ -119,16 +93,13 @@ class CreateAccountScreen(QDialog):
         self.confirmPassword_textbx.setEchoMode(QtWidgets.QLineEdit.Password)
 
         # when next button is clicked it will go to nextpage_funtion
-        self.nextbtn.clicked.connect(nextpage_function)
+        self.nextbtn.clicked.connect(self.nextpage_function)
 
-
-# this is for link
-class HyperlinkLabel(QDialog):
-    def __init__(self, parent=None):
-        super().__init__()
-        self.setStyleSheet('font-size: 35px')
-        self.setOpenExternalLinks(True)
-        self.setParent(parent)
+    def nextpage_function(self):
+        # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
+        second_page_create_account = SecondCreateAccountScreen()
+        widget.addWidget(second_page_create_account)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class SecondCreateAccountScreen(QDialog):
@@ -138,11 +109,65 @@ class SecondCreateAccountScreen(QDialog):
         loadUi("second_create_account.ui", self)
 
         # this is for link/ place holders should be available
-        # https://learndataanalysis.org/create-hyperlinks-pyqt5-tutorial/
         linkTemplate = "<a href='https://www.16personalities.com/free-personality-test'>'Myers–Briggs'</a>"
 
         # linklbl = HyperlinkLabel(self)
         self.linklbl.setText(linkTemplate)
+
+        # Radio Button Mentor, will call function check
+        self.mentor_rdbtn.toggled.connect(self.check)
+
+        # Radio Button Mentee, will call function check
+        self.mentee_rdbtn.toggled.connect(self.check)
+
+    # Depending on the radio button selected, it will take that path
+    def check(self):
+        if self.mentor_rdbtn.isChecked():
+            self.createAccountbtn.clicked.connect(self.mentorPg1_function)
+        elif self.mentee_rdbtn.isChecked():
+            self.createAccountbtn.clicked.connect(self.goto_login)
+        else:
+            self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
+
+    def mentorPg1_function(self):
+        # this will open the MentorQuestionsPg1 window in the current window by calling the .ui class
+        mentor_pg1 = MentorQuestionsPg1()
+        widget.addWidget(mentor_pg1)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    # #################################################################################################################
+    ############################# This is a place holder for mentee page to open ######################################
+
+    def goto_login(self):
+        # this will open the new login window in the current window by calling the .ui class
+        login = LoginScreen()
+        widget.addWidget(login)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    ##################################### End of place holder ##########################################################
+
+
+class MentorQuestionsPg1(QDialog):
+    def __init__(self):
+        super(MentorQuestionsPg1, self).__init__()
+        # load the gui to our python code
+        loadUi("mentor_questions_pg1.ui", self)
+
+        # when next button is clicked it will go to nextpage_funtion
+        self.nextbtn.clicked.connect(self.nextpage_function)
+
+    def nextpage_function(self):
+        # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
+        mentor_pg2 = MentorQuestionsPg2()
+        widget.addWidget(mentor_pg2)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class MentorQuestionsPg2(QDialog):
+    def __init__(self):
+        super(MentorQuestionsPg2, self).__init__()
+        # load the gui to our python code
+        loadUi("mentor_questions_pg2.ui", self)
 
 
 # main
