@@ -82,8 +82,8 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="departmentlbl">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>220</y>
+      <x>290</x>
+      <y>270</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -99,9 +99,9 @@ color:rgb(255, 255, 255)</string>
    <widget class="QComboBox" name="department_comboBox">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>220</y>
-      <width>301</width>
+      <x>620</x>
+      <y>270</y>
+      <width>271</width>
       <height>61</height>
      </rect>
     </property>
@@ -142,8 +142,8 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="jobPositionlbl">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>290</y>
+      <x>280</x>
+      <y>370</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -156,48 +156,11 @@ color:rgb(255, 255, 255)</string>
      <string>Job Position :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="jobPosition_textbx">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>300</y>
-      <width>301</width>
-      <height>61</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="hireDatelbl">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>370</y>
-      <width>211</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Hire Date :</string>
-    </property>
-   </widget>
-   <widget class="QCalendarWidget" name="calendarWidget">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>370</y>
-      <width>501</width>
-      <height>211</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="myersBriggslbl">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>590</y>
+      <x>240</x>
+      <y>460</y>
       <width>321</width>
       <height>61</height>
      </rect>
@@ -207,15 +170,15 @@ color:rgb(255, 255, 255)</string>
 color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>Myers-Briggs Score :</string>
+     <string>Myers-Briggs Type :</string>
     </property>
    </widget>
    <widget class="QComboBox" name="myersBriggs_comboBox">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>600</y>
-      <width>301</width>
+      <x>620</x>
+      <y>470</y>
+      <width>271</width>
       <height>61</height>
      </rect>
     </property>
@@ -306,8 +269,8 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="myersBriggslbl_2">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>670</y>
+      <x>210</x>
+      <y>550</y>
       <width>331</width>
       <height>51</height>
      </rect>
@@ -323,15 +286,17 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="linklbl">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>680</y>
-      <width>311</width>
+      <x>620</x>
+      <y>560</y>
+      <width>271</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 75 14pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);</string>
+color:rgb(255, 0, 0);
+background:rgb(255, 255, 255);
+</string>
     </property>
     <property name="text">
      <string/>
@@ -343,8 +308,8 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="select_if_arelbl">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>740</y>
+      <x>210</x>
+      <y>620</y>
       <width>331</width>
       <height>51</height>
      </rect>
@@ -354,16 +319,16 @@ color:rgb(255, 255, 255);</string>
 color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>Select if are a :</string>
+     <string>Select if you are a :</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="mentor_rdbtn">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>750</y>
-      <width>121</width>
-      <height>51</height>
+      <x>620</x>
+      <y>620</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -373,12 +338,18 @@ color:rgb(255, 255, 255)</string>
     <property name="text">
      <string>Mentor</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QRadioButton" name="mentee_rdbtn">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>747</y>
+      <x>760</x>
+      <y>620</y>
       <width>121</width>
       <height>61</height>
      </rect>
@@ -389,6 +360,107 @@ color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string>Mentee</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="department_comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>370</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Accountant</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Network Engineer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Database Administrator</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Information</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Security Specialist/Analyst</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IT Support</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Software Engineer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Quality Analyst</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CEO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CFO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>COO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CIO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CTO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CISO</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="error_lbl">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>750</y>
+      <width>911</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(170, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Please Make sure to select if you are a Mentor or Mentee
+otherwise you won't be able to continue forward </string>
     </property>
    </widget>
   </widget>
