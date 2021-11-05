@@ -295,7 +295,7 @@ color:rgb(255, 255, 255)</string>
     <property name="styleSheet">
      <string notr="true">font: 75 14pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 0, 0);
-background:rgb(255, 255, 255);
+
 </string>
     </property>
     <property name="text">
@@ -362,7 +362,7 @@ color:rgb(255, 255, 255)</string>
      <string>Mentee</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="department_comboBox_2">
+   <widget class="QComboBox" name="jobPosition_comboBox">
     <property name="geometry">
      <rect>
       <x>620</x>

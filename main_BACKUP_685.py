@@ -6,7 +6,7 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-
+<<<<<<< HEAD
 
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QComboBox, QLineEdit
 from PyQt5 import *
@@ -14,10 +14,10 @@ from PyQt5 import *
 import sqlite3
 import webbrowser
 import mysql.connector
-
-
-
-
+from mysql.connector import Error
+=======
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QRadioButton
+>>>>>>> francisco
 
 
 # Show the welcome_screen, created class that will have objects,
@@ -88,13 +88,13 @@ class LoginScreen(QDialog):
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
 # ***************************************************************************************************************
 class CreateAccountScreen(QDialog):
-
+<<<<<<< HEAD
     def __init__(self, parent=None):
-
-
+=======
+    global fname, lname, email, password, number, userdata_createaccount1
 
     def __init__(self):
-
+>>>>>>> francisco
         super(CreateAccountScreen, self).__init__()
         # load the gui to our python code
         loadUi("create_account_both.ui", self)
@@ -109,14 +109,14 @@ class CreateAccountScreen(QDialog):
     def nextpage_function(self):
         # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
 
+        # firstname = self.fname_textbx.text()
+        # print(firstname)
 
-
-
-
-
-
-
-
+        # Get user input from create_account_both.ui
+        fname = self.fname_textbx.text()
+        lname = self.lname_textbx.text()
+        userdata = (fname, lname)
+        print(userdata)
 
         second_page_create_account = SecondCreateAccountScreen()
         widget.addWidget(second_page_create_account)

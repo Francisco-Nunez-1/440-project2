@@ -6,18 +6,7 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-
-
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QComboBox, QLineEdit
-from PyQt5 import *
-
-import sqlite3
-import webbrowser
-import mysql.connector
-
-
-
-
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QRadioButton
 
 
 # Show the welcome_screen, created class that will have objects,
@@ -88,13 +77,9 @@ class LoginScreen(QDialog):
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
 # ***************************************************************************************************************
 class CreateAccountScreen(QDialog):
-
-    def __init__(self, parent=None):
-
-
+    global fname, lname, email, password, number, userdata_createaccount1
 
     def __init__(self):
-
         super(CreateAccountScreen, self).__init__()
         # load the gui to our python code
         loadUi("create_account_both.ui", self)
@@ -108,16 +93,6 @@ class CreateAccountScreen(QDialog):
 
     def nextpage_function(self):
         # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
-
-
-
-
-
-
-
-
-
-
         second_page_create_account = SecondCreateAccountScreen()
         widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
@@ -132,126 +107,14 @@ class CreateAccountScreen(QDialog):
         print(userdata_createaccount1)
 
 
-# this is for link
-class HyperlinkLabel(QLabel):
-    # def __init__(self, parent=None):
-    def __init__(self, parent=None):
-        super(HyperlinkLabel, self).__init__()
-        # self.setStyleSheet('font-size: 35px')
-        self.setOpenExternalLinks(True)
-        self.setParent(parent)
-
-
 class SecondCreateAccountScreen(QDialog):
     def __init__(self):
         super(SecondCreateAccountScreen, self).__init__()
-
         # load the gui to our python code
         loadUi("second_create_account.ui", self)
 
         # this is for link/ place holders should be available
         linkTemplate = "<a href='https://www.16personalities.com/free-personality-test'>'Myers–Briggs'</a>"
-
-
-        linklbl = HyperlinkLabel(self)
-        # self.linklbl.setText(linkTemplate.format('https://google.com', 'Google.com'))
-        self.linklbl.setText(linkTemplate.format('https://google.com', 'Google.com'))
-
-        self.createAccountbtn.clicked.connect(self.connectdatabase)
-
-    def connectdatabase(self):
-        try:
-            # Gets input from the form
-            # Only able to get input from second_create_account.ui
-
-            # From create_account_both.ui
-            # Ends the program when ran
-            # fname = self.fname_textbx.text()
-            # print(fname)
-
-            # From second_create_account.ui
-            department = self.department_comboBox.currentText()
-            print(department)
-
-            connection = mysql.connector.connect(host='107.180.1.16',
-                                                 database='cis440fall2021group1',
-                                                 user='fall2021group1',
-                                                 password='fall2021group1')
-
-            if connection.is_connected():
-                db_info = connection.get_server_info()
-                print("Connected to MySQL Server version ", db_info)
-                cursor = connection.cursor()
-                cursor.execute("select database();")
-                record = cursor.fetchone()
-                print("You're connected to database: ", record)
-
-
-                # # Insert data to the database
-                # Only work with inputs from second_create_account.ui
-                # sql = "INSERT INTO Employees (FName, Department) VALUES (%s, %s)"
-                # val = (fname, department)
-                # cursor.execute(sql, val)
-                # connection.commit()
-                #
-                # print(cursor.rowcount, "record inserted.")
-
-        except Error as e:
-            print("Error while connecting to MySQL", e)
-        finally:
-            if connection.is_connected():
-                cursor.close()
-                connection.close()
-                print("MySQL connection is closed")
-
-
-
-# Connect to a mysql database (hard coded data)
-# class ConnectDatabase:
-#     def __init__(self):
-#         try:
-#             connection = mysql.connector.connect(host='107.180.1.16',
-#                                                  database='cis440fall2021group1',
-#                                                  user='fall2021group1',
-#                                                  password='fall2021group1')
-#
-#             if connection.is_connected():
-#                 db_info = connection.get_server_info()
-#                 print("Connected to MySQL Server version ", db_info)
-#                 cursor = connection.cursor()
-#                 cursor.execute("select database();")
-#                 record = cursor.fetchone()
-#                 print("You're connected to database: ", record)
-#
-#                 # # Insert data to the database
-#                 # sql = "INSERT INTO Employees (FName, LName, AdvisingRole, Department) VALUES (%s, %s, %s, %s)"
-#                 # val = ("John", "Doe", "Mentee", "IT")
-#                 # cursor.execute(sql, val)
-#                 # connection.commit()
-#                 #
-#                 # print(cursor.rowcount, "record inserted.")
-#
-#                 # Insert data to the database
-#                 department
-#
-#                 sql = "INSERT INTO Employees (Department) VALUES (%s)"
-#                 val = department
-#                 cursor.execute(sql, val)
-#                 connection.commit()
-#
-#                 print(cursor.rowcount, "record inserted.")
-#
-#
-#         except Error as e:
-#             print("Error while connecting to MySQL", e)
-#         finally:
-#             if connection.is_connected():
-#                 cursor.close()
-#                 connection.close()
-#                 print("MySQL connection is closed")
-
-
-
 
         # linklbl = HyperlinkLabel(self)
         self.linklbl.setText(linkTemplate)
