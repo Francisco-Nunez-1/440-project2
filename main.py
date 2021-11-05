@@ -251,11 +251,6 @@ class SecondCreateAccountScreen(QDialog):
 #                 print("MySQL connection is closed")
 
 
-
-
-        # linklbl = HyperlinkLabel(self)
-        self.linklbl.setText(linkTemplate)
-
         # Radio Button Mentor, will call function check
         self.mentor_rdbtn.toggled.connect(self.check)
 
