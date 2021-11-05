@@ -2,14 +2,11 @@
 # functionality for back button
 # add numbers to the slider as its slides
 
-
 # # Imports to run Qt5
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QRadioButton
-import sqlite3
-import webbrowser
 
 
 # Show the welcome_screen, created class that will have objects,
@@ -79,8 +76,9 @@ class LoginScreen(QDialog):
 
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
 # ***************************************************************************************************************
-
 class CreateAccountScreen(QDialog):
+    global fname, lname, email, password, number, userdata_createaccount1
+
     def __init__(self):
         super(CreateAccountScreen, self).__init__()
         # load the gui to our python code
@@ -98,6 +96,15 @@ class CreateAccountScreen(QDialog):
         second_page_create_account = SecondCreateAccountScreen()
         widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+        # Get user input from create_account_both.ui
+        fname = self.fname_textbx.text()
+        lname = self.lname_textbx.text()
+        email = self.email_textbx.text()
+        password = self.password_textbx.text()
+        number = self.phonenumber_textbx.text()
+        userdata_createaccount1 = [fname, lname, email, password, number]
+        print(userdata_createaccount1)
 
 
 class SecondCreateAccountScreen(QDialog):
@@ -120,7 +127,15 @@ class SecondCreateAccountScreen(QDialog):
 
     # Depending on the radio button selected, it will take that path
     def check(self):
+        global department, jobPosition, myersBriggs, userdata_createaccount2
         if self.mentor_rdbtn.isChecked():
+            # Get user input from SecondCreateAccountScreen.ui
+            department = self.department_comboBox.currentText()
+            jobPosition = self.jobPosition_comboBox.currentText()
+            myersBriggs = self.myersBriggs_comboBox.currentText()
+            # mentor_or_mentee = self.password_textbx.text()
+            userdata_createaccount2 = [department, jobPosition, myersBriggs]
+            print(userdata_createaccount2)
             self.createAccountbtn.clicked.connect(self.mentorPg1_function)
         elif self.mentee_rdbtn.isChecked():
             self.createAccountbtn.clicked.connect(self.goto_login)
@@ -143,6 +158,7 @@ class SecondCreateAccountScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     ##################################### End of place holder ##########################################################
+
 
 
 class MentorQuestionsPg1(QDialog):
