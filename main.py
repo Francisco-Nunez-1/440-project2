@@ -147,11 +147,6 @@ class SecondCreateAccountScreen(QDialog):
             # Gets input from the form
             # Only able to get input from second_create_account.ui
 
-            # From create_account_both.ui
-            # Ends the program when ran
-            # fname = self.fname_textbx.text()
-            # print(fname)
-
             # From second_create_account.ui
             department = self.department_comboBox.currentText()
             print(department)
@@ -169,16 +164,6 @@ class SecondCreateAccountScreen(QDialog):
                 record = cursor.fetchone()
                 print("You're connected to database: ", record)
 
-
-                # # Insert data to the database
-                # Only work with inputs from second_create_account.ui
-                # sql = "INSERT INTO Employees (FName, Department) VALUES (%s, %s)"
-                # val = (fname, department)
-                # cursor.execute(sql, val)
-                # connection.commit()
-                #
-                # print(cursor.rowcount, "record inserted.")
-
         except Error as e:
             print("Error while connecting to MySQL", e)
         finally:
@@ -187,65 +172,14 @@ class SecondCreateAccountScreen(QDialog):
                 connection.close()
                 print("MySQL connection is closed")
 
-
-
-# Connect to a mysql database (hard coded data)
-# class ConnectDatabase:
-#     def __init__(self):
-#         try:
-#             connection = mysql.connector.connect(host='107.180.1.16',
-#                                                  database='cis440fall2021group1',
-#                                                  user='fall2021group1',
-#                                                  password='fall2021group1')
-#
-#             if connection.is_connected():
-#                 db_info = connection.get_server_info()
-#                 print("Connected to MySQL Server version ", db_info)
-#                 cursor = connection.cursor()
-#                 cursor.execute("select database();")
-#                 record = cursor.fetchone()
-#                 print("You're connected to database: ", record)
-#
-#                 # # Insert data to the database
-#                 # sql = "INSERT INTO Employees (FName, LName, AdvisingRole, Department) VALUES (%s, %s, %s, %s)"
-#                 # val = ("John", "Doe", "Mentee", "IT")
-#                 # cursor.execute(sql, val)
-#                 # connection.commit()
-#                 #
-#                 # print(cursor.rowcount, "record inserted.")
-#
-#                 # Insert data to the database
-#                 department
-#
-#                 sql = "INSERT INTO Employees (Department) VALUES (%s)"
-#                 val = department
-#                 cursor.execute(sql, val)
-#                 connection.commit()
-#
-#                 print(cursor.rowcount, "record inserted.")
-#
-#
-#         except Error as e:
-#             print("Error while connecting to MySQL", e)
-#         finally:
-#             if connection.is_connected():
-#                 cursor.close()
-#                 connection.close()
-#                 print("MySQL connection is closed")
-
-
-        # Radio Button Mentor, will call function check
-        self.mentor_rdbtn.toggled.connect(self.check)
-
-        # Radio Button Mentee, will call function check
-        self.mentee_rdbtn.toggled.connect(self.check)
+                self.check()
 
     # Depending on the radio button selected, it will take that path
     def check(self):
         if self.mentor_rdbtn.isChecked():
-            self.createAccountbtn.clicked.connect(self.mentorPg1_function)
+            self.mentorPg1_function()
         elif self.mentee_rdbtn.isChecked():
-            self.createAccountbtn.clicked.connect(self.goto_login)
+            self.goto_login()
         else:
             self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
 
@@ -276,10 +210,20 @@ class MentorQuestionsPg1(QDialog):
         # when next button is clicked it will go to nextpage_funtion
         self.nextbtn.clicked.connect(self.nextpage_function)
 
+        # # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+    # go to MentorQuestionsPg2
     def nextpage_function(self):
         # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
         mentor_pg2 = MentorQuestionsPg2()
         widget.addWidget(mentor_pg2)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    # go back to SecondAccountScreen
+    def backpage_function(self):
+        second_page_create_account = SecondCreateAccountScreen()
+        widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -288,6 +232,15 @@ class MentorQuestionsPg2(QDialog):
         super(MentorQuestionsPg2, self).__init__()
         # load the gui to our python code
         loadUi("mentor_questions_pg2.ui", self)
+
+        # # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+    # go back to MentorQuestionsPg1
+    def backpage_function(self):
+        mentor_pg1 = MentorQuestionsPg1()
+        widget.addWidget(mentor_pg1)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 # main
