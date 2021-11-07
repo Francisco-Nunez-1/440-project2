@@ -361,6 +361,9 @@ color:rgb(255, 255, 255)</string>
     <property name="text">
      <string>Mentee</string>
     </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QComboBox" name="jobPosition_comboBox">
     <property name="geometry">
