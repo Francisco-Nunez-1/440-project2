@@ -168,6 +168,7 @@ class SecondCreateAccountScreen(QDialog):
                 record = cursor.fetchone()
                 print("You're connected to database: ", record)
 
+
                 sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, LoginCount," \
                       "Department,JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
@@ -189,6 +190,7 @@ class SecondCreateAccountScreen(QDialog):
                 connection.close()
                 print("MySQL connection is closed")
                 self.check()
+
 
     def check(self):
         if self.mentor_rdbtn.isChecked():
@@ -221,10 +223,20 @@ class MentorQuestionsPg1(QDialog):
         # when next button is clicked it will go to nextpage_funtion
         self.nextbtn.clicked.connect(self.nextpage_function)
 
+        # # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+    # go to MentorQuestionsPg2
     def nextpage_function(self):
         # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
         mentor_pg2 = MentorQuestionsPg2()
         widget.addWidget(mentor_pg2)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    # go back to SecondAccountScreen
+    def backpage_function(self):
+        second_page_create_account = SecondCreateAccountScreen()
+        widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -233,6 +245,15 @@ class MentorQuestionsPg2(QDialog):
         super(MentorQuestionsPg2, self).__init__()
         # load the gui to our python code
         loadUi("mentor_questions_pg2.ui", self)
+
+        # # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+    # go back to MentorQuestionsPg1
+    def backpage_function(self):
+        mentor_pg1 = MentorQuestionsPg1()
+        widget.addWidget(mentor_pg1)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 # main
