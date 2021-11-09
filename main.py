@@ -2,11 +2,11 @@
 # functionality for back button
 # add numbers to the slider as its slides
 
-
 # # Imports to run Qt5
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
+
 
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QLabel, QComboBox, QLineEdit
 from PyQt5 import *
@@ -14,7 +14,6 @@ from PyQt5 import *
 import sqlite3
 import webbrowser
 import mysql.connector
-from mysql.connector import Error
 
 
 # Show the welcome_screen, created class that will have objects,
@@ -84,9 +83,11 @@ class LoginScreen(QDialog):
 
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
 # ***************************************************************************************************************
-
 class CreateAccountScreen(QDialog):
-    def __init__(self, parent=None):
+
+    # def __init__(self, parent=None):
+
+    def __init__(self):
         super(CreateAccountScreen, self).__init__()
         # load the gui to our python code
         loadUi("create_account_both.ui", self)
@@ -99,18 +100,17 @@ class CreateAccountScreen(QDialog):
         self.nextbtn.clicked.connect(self.nextpage_function)
 
     def nextpage_function(self):
-        # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
-
-        # firstname = self.fname_textbx.text()
-        # print(firstname)
-
         # Get user input from create_account_both.ui
         fname = self.fname_textbx.text()
         lname = self.lname_textbx.text()
-        userdata = (fname, lname)
-        print(userdata)
+        email = self.email_textbx.text()
+        password = self.password_textbx.text()
+        number = self.phonenumber_textbx.text()
+        userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number}
+        # print(userDataPage1)
 
-        second_page_create_account = SecondCreateAccountScreen()
+        # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
+        second_page_create_account = SecondCreateAccountScreen(userDataPage1)
         widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -126,15 +126,15 @@ class HyperlinkLabel(QLabel):
 
 
 class SecondCreateAccountScreen(QDialog):
-    def __init__(self):
+    def __init__(self, userData):
         super(SecondCreateAccountScreen, self).__init__()
-
+        self.userData = userData
+        # print(self.userData)
         # load the gui to our python code
         loadUi("second_create_account.ui", self)
 
         # this is for link/ place holders should be available
         linkTemplate = "<a href='https://www.16personalities.com/free-personality-test'>'Myers–Briggs'</a>"
-
 
         linklbl = HyperlinkLabel(self)
         # self.linklbl.setText(linkTemplate.format('https://google.com', 'Google.com'))
@@ -144,18 +144,22 @@ class SecondCreateAccountScreen(QDialog):
 
     def connectdatabase(self):
         try:
-            # Gets input from the form
-            # Only able to get input from second_create_account.ui
-
-            # From second_create_account.ui
             department = self.department_comboBox.currentText()
-            print(department)
+            jobPosition = self.jobPosition_comboBox.currentText()
+            myersBriggs = self.myersBriggs_comboBox.currentText()
+
+            if self.mentee_rdbtn.isChecked():
+                advisingRole = "Mentee"
+            elif self.mentor_rdbtn.isChecked():
+                advisingRole = "Mentor"
+
+            else:
+                self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
 
             connection = mysql.connector.connect(host='107.180.1.16',
                                                  database='cis440fall2021group1',
                                                  user='fall2021group1',
                                                  password='fall2021group1')
-
             if connection.is_connected():
                 db_info = connection.get_server_info()
                 print("Connected to MySQL Server version ", db_info)
@@ -164,21 +168,36 @@ class SecondCreateAccountScreen(QDialog):
                 record = cursor.fetchone()
                 print("You're connected to database: ", record)
 
-        except Error as e:
+
+                sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, LoginCount," \
+                      "Department,JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+                val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
+                       self.userData['email'], self.userData['password'],
+                       advisingRole, myersBriggs, '0', department, jobPosition)
+
+                cursor.execute(sql, val)
+                connection.commit()
+
+                print(cursor.rowcount, "record inserted.")
+
+        except Exception as e:
             print("Error while connecting to MySQL", e)
+
         finally:
             if connection.is_connected():
                 cursor.close()
                 connection.close()
                 print("MySQL connection is closed")
-
                 self.check()
 
-    # Depending on the radio button selected, it will take that path
+
     def check(self):
         if self.mentor_rdbtn.isChecked():
+            print('mentor is checked')
             self.mentorPg1_function()
         elif self.mentee_rdbtn.isChecked():
+            print('mentee is checked')
             self.goto_login()
         else:
             self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
@@ -189,17 +208,11 @@ class SecondCreateAccountScreen(QDialog):
         widget.addWidget(mentor_pg1)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    # #################################################################################################################
-    ############################# This is a place holder for mentee page to open ######################################
-
     def goto_login(self):
         # this will open the new login window in the current window by calling the .ui class
         login = LoginScreen()
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-
-    ##################################### End of place holder ##########################################################
-
 
 class MentorQuestionsPg1(QDialog):
     def __init__(self):
