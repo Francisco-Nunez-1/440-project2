@@ -451,9 +451,9 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="error_lbl">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>750</y>
-      <width>911</width>
+      <x>940</x>
+      <y>600</y>
+      <width>491</width>
       <height>121</height>
      </rect>
     </property>
@@ -462,8 +462,24 @@ color:rgb(255, 255, 255)</string>
 color:rgb(170, 0, 0);</string>
     </property>
     <property name="text">
-     <string>Please Make sure to select if you are a Mentor or Mentee
-otherwise you won't be able to continue forward </string>
+     <string/>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>790</y>
+      <width>441</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="value">
+     <number>25</number>
     </property>
    </widget>
   </widget>

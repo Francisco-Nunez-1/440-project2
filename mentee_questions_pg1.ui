@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>940</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="bgwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-160</x>
+     <y>-40</y>
+     <width>1440</width>
+     <height>940</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#bgwidget{
+background-color:qlineargradient(spread:pad, x1:0.0511364, y1:0.0687727, x2:1, y2:1, stop:0.363636 rgba(5, 82, 201, 255), stop:0.9375 rgba(0, 0, 0, 255));}</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>711</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 36pt &quot;MS Shell Dlg 2&quot;;
+</string>
+    </property>
+    <property name="text">
+     <string>Mentee Questions </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextbtn">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>510</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Next</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="yearsWithCompanylbl_2">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>150</y>
+      <width>651</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Please select (3) areas in which you would like to recieve mentorship.</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="programming_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>250</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Programming</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="htmlCssJs_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>290</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>HTML/CSS/JS</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cSharpNet_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>340</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>C#/.NET</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="c_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>390</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>C</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="swift_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>440</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Swift</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="sql_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>250</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SQL</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="networkAdmin_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>290</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Network administration</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="qualityAssurance_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>340</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quality Assurance</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="automatedTesting_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>390</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Automated testing</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cloudAdmin_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>440</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cloud administration</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="databaseAdmin_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>250</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Database administration</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="databaseManger_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>300</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Database management</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="databaseQuerying_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>350</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Database querying</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="reactJs_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>390</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ReactJS</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="wpf_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>440</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>WPF</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backbtn">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>510</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="androidDev_checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>430</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Android development</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="mvvm_checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>250</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MVVM</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="azure_checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>350</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Azure</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="git_checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>300</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Git/Github</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ios_checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>390</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>iOS/MacOS</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>590</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
