@@ -9,6 +9,8 @@
 # Pulling from data base to log in into login landing page
 # Matching algorithm
 # Pull and display info in login landing page
+# check if class mentore page 2 questions checks that fields are field before continuing and call the spinbox
+# check if class mente questions checks that checkboxes are only 3 before continuing
 
 # # Imports to run Qt5
 import sys
@@ -275,12 +277,12 @@ class SecondCreateAccountScreen(QDialog):
                     self.error_lbl.setText("Please fill in all fields")
                     print("A field is empty")
                 else:
-                    sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, LoginCount," \
+                    sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType," \
                           "Department,JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
                     val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
                            self.userData['email'], self.userData['password'],
-                           advisingRole, myersBriggs, '0', department, jobPosition)
+                           advisingRole, myersBriggs, department, jobPosition)
 
                     cursor.execute(sql, val)
                     connection.commit()
@@ -541,9 +543,10 @@ class MentorQuestionsPg1(QDialog):
         elif num_in_list > 3:
             self.error_lbl.setText("Can't choose more than 3\n allowed 3 only")
         elif num_in_list == 3:
+            #  when next button is clicked it will go in to the nextpage_function
             self.nextbtn.clicked.connect(self.nextpage_function)
 
-        # # when next button is clicked it will go back to the previous page
+        # # when back button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
 
     # go to MentorQuestionsPg2
@@ -566,13 +569,44 @@ class MentorQuestionsPg2(QDialog):
         # load the gui to our python code
         loadUi("mentor_questions_pg2.ui", self)
 
-        # # when next button is clicked it will go back to the previous page
+        hobby1 = self.hobby1_textbx.text()
+        hobby2 = self.hobby2_textbx.text()
+        hobby3 = self.hobby3_textbx.text()
+
+        list_of_hobbies = []
+
+        list_of_hobbies.append(self.hobby1)
+        list_of_hobbies.append(self.hobby3)
+        list_of_hobbies.append(self.hobby3)
+
+        print(list_of_hobbies)
+
+        # check fields arent blank and password matches before going to next page
+        if len(ability_num) == 0 or len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
+            self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
+        else:
+            # this will go to the login function
+            login = LoginScreen()
+            widget.addWidget(login)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
+
+        # when next button is clicked it will go to nextpage_funtion
+        self.createAccountbtn.clicked.connect(self.goto_login)
+        #
+        # when next button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
 
-    # go back to MentorQuestionsPg1
+    def goto_login(self):
+        # this will open the new login window in the current window by calling the .ui class
+        login = LoginScreen()
+        widget.addWidget(login)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+        # go back to SecondAccountScreen
+
     def backpage_function(self):
-        mentor_pg1 = MentorQuestionsPg1()
-        widget.addWidget(mentor_pg1)
+        second_page_create_account = SecondCreateAccountScreen(self.userData)
+        widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -778,11 +812,17 @@ class MenteeQuestionsPg1(QDialog):
                                               f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
                                               f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
 
-        # when next button is clicked it will go to nextpage_funtion
-        self.createAccountbtn.clicked.connect(self.goto_login)
-        #
+        # check fields arent blank and password matches before going to next page
+        if num_in_list < 3:
+            self.error_lbl.setText("Can't choose less than 3\n allowed 3 only ")
+        elif num_in_list > 3:
+            self.error_lbl.setText("Can't choose more than 3\n allowed 3 only")
+        elif num_in_list == 3:
+            # when next button is clicked it will go to nextpage_funtion
+            self.createAccountbtn.clicked.connect(self.goto_login)
+
         # when next button is clicked it will go back to the previous page
-        # self.backbtn.clicked.connect(self.backpage_function)
+        self.backbtn.clicked.connect(self.backpage_function)
 
     def goto_login(self):
         # this will open the new login window in the current window by calling the .ui class
