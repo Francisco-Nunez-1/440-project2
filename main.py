@@ -31,6 +31,12 @@ def mysqlconnect():
                                           password='fall2021group1')
     return credentials
 
+# Work on this if there is time
+# def backpage_function(className):
+#     widget.addWidget(className)
+#     widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
 
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
@@ -92,24 +98,28 @@ class LoginScreen(QDialog):
 
             # save to result_pass this will get the password from db and check it matches
             # with what they typed in
-            result_password = cursor.fetchone()
+            # result_password = cursor.fetchone()
+            result_password = str(cursor.fetchone()[0])
 
             if result_password == typed_password:
                 print("Successfully logged in")
                 self.error_lbl.setText("")
                 query = 'SELECT AdvisingRole FROM Employees WHERE Email =\'' + typed_user + "\'"
                 cursor.execute(query)
-                result_role = cursor.fetchone()
-                self.loginbtn.clicked.connect(self.path(result_role))
-
+                result_role = str(cursor.fetchone()[0])
+                print(result_role)
+                self.path(result_role, typed_user)
             else:
                 # tried to be funny
                 self.error_lbl.setText("Invalid Username or Password \nor Both go figure it out!!!!")
 
+            cursor.close()
+            connection.close()
+
     # Loads the corresponding landing page depending on the advising role of the user
-    def path(self, role):
+    def path(self, role, user):
         if role == "Mentor":
-            mentor_login = MentorLanding()
+            mentor_login = MentorLanding(user)
             widget.addWidget(mentor_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
         elif role == "Mentee":
@@ -117,19 +127,38 @@ class LoginScreen(QDialog):
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
-
+# Still a working porgess
+# Displays the mentee matches to the mentor
 class MentorLanding(QDialog):
-    def __init__(self):
+    def __init__(self, user):
+        super(MentorLanding, self).__init__()
         loadUi("mentor_landing_pg.ui", self)
+
+        self.user = user
+
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
+        cursor.execute(query)
+
+        # mentee = str(cursor.fetchall())
+        for value in cursor.fetchall():
+            mentee_name = (str(value[0]), str(value[1]))
+            mentee_email = str(value[2])
+
+        print(mentee_name, mentee_email)
+
         # connection = mysqlconnect()
         # connection.cursor()
         #
         # connection.cursor.close()
         # connection.close()
 
-
+# Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
     def __init__(self):
+        super(MenteeLanding, self).__init__()
         loadUi("mentee_landing_pg.ui", self)
 
 
@@ -299,8 +328,15 @@ class MentorQuestionsPg1(QDialog):
         loadUi("mentor_questions_pg1.ui", self)
 
         self.userData = userData
-        
-        
+
+        # when the back button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+        # Work on this if there is time
+        # backpage_name = SecondCreateAccountScreen(self.userData)
+        # self.backbtn.clicked.connect(backpage_function(SecondCreateAccountScreen(self.userData)))
+
+
         # check boxes functionality
 
         # This lines of code will check if the checkboxes are checked with (stateChanged) and...
@@ -508,9 +544,6 @@ class MentorQuestionsPg1(QDialog):
             # when next button is clicked it will go to nextpage_funtion
             self.nextbtn.clicked.connect(self.nextpage_function)
 
-        # # when next button is clicked it will go back to the previous page
-        self.backbtn.clicked.connect(self.backpage_function)
-
     # go to MentorQuestionsPg2
     def nextpage_function(self):
         # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
@@ -523,7 +556,6 @@ class MentorQuestionsPg1(QDialog):
         second_page_create_account = SecondCreateAccountScreen(self.userData)
         widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-
 
 
 class MentorQuestionsPg2(QDialog):
