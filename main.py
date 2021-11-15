@@ -23,6 +23,21 @@ import webbrowser
 import mysql.connector
 
 
+# Credentials to connect to the database
+def mysqlconnect():
+    credentials = mysql.connector.connect(host='107.180.1.16',
+                                          database='cis440fall2021group1',
+                                          user='fall2021group1',
+                                          password='fall2021group1')
+    return credentials
+
+# Work on this if there is time
+# def backpage_function(className):
+#     widget.addWidget(className)
+#     widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
 class WelcomeScreen(QDialog):
@@ -72,20 +87,79 @@ class LoginScreen(QDialog):
         # *******************************************************************************************************
         # validate if user and password match
         else:
-            conn = sqlite3.connect("DATABASE NAME HERE")
+            # conn = sqlite3.connect("DATABASE NAME HERE")
+            connection = mysqlconnect()
+            cursor = connection.cursor()
             # this execute the query's
-            cur = conn.cursor()
-            query = 'SELECT password_COLUMN_HERE FROM TABLE_NAME_HERE WHERE username_COLUMN_NAME =\'' + typed_user + "\'"
-            cur.execute(query)
+            # cur = conn.cursor()
+            # query = 'SELECT password_COLUMN_HERE FROM TABLE_NAME_HERE WHERE username_COLUMN_NAME =\'' + typed_user + "\'"
+            query = 'SELECT Password FROM Employees WHERE Email =\'' + typed_user + "\'"
+            cursor.execute(query)
+
             # save to result_pass this will get the password from db and check it matches
             # with what they typed in
-            result_password = cur.fetchone()
+            # result_password = cursor.fetchone()
+            result_password = str(cursor.fetchone()[0])
+
             if result_password == typed_password:
                 print("Successfully logged in")
                 self.error_lbl.setText("")
+                query = 'SELECT AdvisingRole FROM Employees WHERE Email =\'' + typed_user + "\'"
+                cursor.execute(query)
+                result_role = str(cursor.fetchone()[0])
+                print(result_role)
+                self.path(result_role, typed_user)
             else:
                 # tried to be funny
                 self.error_lbl.setText("Invalid Username or Password \nor Both go figure it out!!!!")
+
+            cursor.close()
+            connection.close()
+
+    # Loads the corresponding landing page depending on the advising role of the user
+    def path(self, role, user):
+        if role == "Mentor":
+            mentor_login = MentorLanding(user)
+            widget.addWidget(mentor_login)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
+        elif role == "Mentee":
+            mentee_login = MenteeLanding()
+            widget.addWidget(mentee_login)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
+
+# Still a working porgess
+# Displays the mentee matches to the mentor
+class MentorLanding(QDialog):
+    def __init__(self, user):
+        super(MentorLanding, self).__init__()
+        loadUi("mentor_landing_pg.ui", self)
+
+        self.user = user
+
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
+        cursor.execute(query)
+
+        # mentee = str(cursor.fetchall())
+        for value in cursor.fetchall():
+            mentee_name = (str(value[0]), str(value[1]))
+            mentee_email = str(value[2])
+
+        print(mentee_name, mentee_email)
+
+        # connection = mysqlconnect()
+        # connection.cursor()
+        #
+        # connection.cursor.close()
+        # connection.close()
+
+# Displays the mentee matches to the mentor
+class MenteeLanding(QDialog):
+    def __init__(self):
+        super(MenteeLanding, self).__init__()
+        loadUi("mentee_landing_pg.ui", self)
 
 
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
@@ -115,6 +189,8 @@ class CreateAccountScreen(QDialog):
         number = self.phonenumber_textbx.text()
         confirmPassword = self.confirmPassword_textbx.text()
         userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number}
+        # userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number,
+        #                  "department": [], "jobPosition": [], "myersBriggs": []}
         # print(userDataPage1)
 
         # check fields arent blank and password matches before going to next page
@@ -166,6 +242,10 @@ class SecondCreateAccountScreen(QDialog):
             jobPosition = self.jobPosition_comboBox.currentText()
             myersBriggs = self.myersBriggs_comboBox.currentText()
 
+            # self.userData.update({"department": department})
+            # self.userData.update({"jobPosition": jobPosition})
+            # self.userData.update({"myersBriggs": myersBriggs})
+
             if self.mentee_rdbtn.isChecked():
                 advisingRole = "Mentee"
             elif self.mentor_rdbtn.isChecked():
@@ -174,10 +254,13 @@ class SecondCreateAccountScreen(QDialog):
             else:
                 self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
 
-            connection = mysql.connector.connect(host='107.180.1.16',
-                                                 database='cis440fall2021group1',
-                                                 user='fall2021group1',
-                                                 password='fall2021group1')
+            # connection = mysql.connector.connect(host='107.180.1.16',
+            #                                      database='cis440fall2021group1',
+            #                                      user='fall2021group1',
+            #                                      password='fall2021group1')
+
+            connection = mysqlconnect()
+
             if connection.is_connected():
                 db_info = connection.get_server_info()
                 print("Connected to MySQL Server version ", db_info)
@@ -186,17 +269,24 @@ class SecondCreateAccountScreen(QDialog):
                 record = cursor.fetchone()
                 print("You're connected to database: ", record)
 
-                sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, LoginCount," \
-                      "Department,JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                # Check if any of the fields are empty
+                blank = ''
+                if blank in self.userData.values():
+                    self.error_lbl.setText("Please fill in all fields")
+                    print("A field is empty")
+                else:
+                    sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, LoginCount," \
+                          "Department,JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-                val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
-                       self.userData['email'], self.userData['password'],
-                       advisingRole, myersBriggs, '0', department, jobPosition)
+                    val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
+                           self.userData['email'], self.userData['password'],
+                           advisingRole, myersBriggs, '0', department, jobPosition)
 
-                cursor.execute(sql, val)
-                connection.commit()
+                    cursor.execute(sql, val)
+                    connection.commit()
 
-                print(cursor.rowcount, "record inserted.")
+                    print(cursor.rowcount, "record inserted.")
+                    self.check()
 
         except Exception as e:
             print("Error while connecting to MySQL", e)
@@ -206,8 +296,8 @@ class SecondCreateAccountScreen(QDialog):
                 cursor.close()
                 connection.close()
                 print("MySQL connection is closed")
-                self.check()
 
+    # Loads the corresponding form page depending on which advising role is selected
     def check(self):
         if self.mentor_rdbtn.isChecked():
             print('mentor is checked')
@@ -220,22 +310,32 @@ class SecondCreateAccountScreen(QDialog):
 
     def mentorPg1_function(self):
         # this will open the MentorQuestionsPg1 window in the current window by calling the .ui class
-        mentor_pg1 = MentorQuestionsPg1()
+        mentor_pg1 = MentorQuestionsPg1(self.userData)
         widget.addWidget(mentor_pg1)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def menteePg1_function(self):
-        # this will open the new login window in the current window by calling the .ui class
-        mentee_Pg1 = MenteeQuestionsPg1()
+        # this will open the MenteeQuestionsPg1 window in the current window by calling the .ui class
+        mentee_Pg1 = MenteeQuestionsPg1(self.userData)
         widget.addWidget(mentee_Pg1)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-
+# Questions for Mentors
 class MentorQuestionsPg1(QDialog):
-    def __init__(self):
+    def __init__(self, userData):
         super(MentorQuestionsPg1, self).__init__()
         # load the gui to our python code
         loadUi("mentor_questions_pg1.ui", self)
+
+        self.userData = userData
+
+        # when the back button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
+        # Work on this if there is time
+        # backpage_name = SecondCreateAccountScreen(self.userData)
+        # self.backbtn.clicked.connect(backpage_function(SecondCreateAccountScreen(self.userData)))
+
 
         # check boxes functionality
 
@@ -443,8 +543,6 @@ class MentorQuestionsPg1(QDialog):
         elif num_in_list == 3:
             self.nextbtn.clicked.connect(self.nextpage_function)
 
-
-
         # # when next button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
 
@@ -457,7 +555,7 @@ class MentorQuestionsPg1(QDialog):
 
     # go back to SecondAccountScreen
     def backpage_function(self):
-        second_page_create_account = SecondCreateAccountScreen()
+        second_page_create_account = SecondCreateAccountScreen(self.userData)
         widget.addWidget(second_page_create_account)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -479,12 +577,16 @@ class MentorQuestionsPg2(QDialog):
 
 
 class MenteeQuestionsPg1(QDialog):
-    def __init__(self):
+    def __init__(self, userData):
         super(MenteeQuestionsPg1, self).__init__()
         # load the gui to our python code
         loadUi("mentee_questions_pg1.ui", self)
+        
+        self.userData = userData
+        
         # this will command to go to gotoLogin function when the button is clicked
         # self.createAccountbtn.clicked.connect(self.)
+
         # check boxes functionality
 
         # This lines of code will check if the checkboxes are checked with (stateChanged) and...
@@ -687,12 +789,12 @@ class MenteeQuestionsPg1(QDialog):
         login = LoginScreen()
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-
+        
     # go back to SecondAccountScreen
-    # def backpage_function(self):
-    #     second_page_create_account = SecondCreateAccountScreen()
-    #     widget.addWidget(second_page_create_account)
-    #     widget.setCurrentIndex(widget.currentIndex() + 1)
+    def backpage_function(self):
+        second_page_create_account = SecondCreateAccountScreen(self.userData)
+        widget.addWidget(second_page_create_account)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 # main
