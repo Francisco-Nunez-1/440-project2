@@ -16,8 +16,8 @@
   <widget class="QWidget" name="bgwidget" native="true">
    <property name="geometry">
     <rect>
-     <x>-160</x>
-     <y>-40</y>
+     <x>0</x>
+     <y>0</y>
      <width>1440</width>
      <height>940</height>
     </rect>
@@ -44,31 +44,31 @@ font: 75 36pt &quot;MS Shell Dlg 2&quot;;
      <string>Mentee Questions </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="nextbtn">
+   <widget class="QPushButton" name="createAccountbtn">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>510</y>
-      <width>151</width>
-      <height>41</height>
+      <x>1160</x>
+      <y>815</y>
+      <width>211</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Next</string>
+     <string>Create Account</string>
     </property>
    </widget>
    <widget class="QLabel" name="yearsWithCompanylbl_2">
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>150</y>
-      <width>651</width>
-      <height>61</height>
+      <y>140</y>
+      <width>1061</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -83,11 +83,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="programming_checkBox">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>330</x>
       <y>250</y>
-      <width>101</width>
+      <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Programming</string>
@@ -96,11 +100,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="htmlCssJs_checkBox">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>290</y>
-      <width>101</width>
+      <x>330</x>
+      <y>300</y>
+      <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>HTML/CSS/JS</string>
@@ -109,11 +117,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="cSharpNet_checkBox">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>340</y>
+      <x>330</x>
+      <y>350</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>C#/.NET</string>
@@ -122,11 +134,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="c_checkBox">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>330</x>
       <y>390</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>C</string>
@@ -135,11 +151,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="swift_checkBox">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>330</x>
       <y>440</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Swift</string>
@@ -148,11 +168,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="sql_checkBox">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>530</x>
       <y>250</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>SQL</string>
@@ -161,11 +185,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="networkAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>290</y>
-      <width>101</width>
+      <x>530</x>
+      <y>300</y>
+      <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Network administration</string>
@@ -174,11 +202,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="qualityAssurance_checkBox">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>340</y>
-      <width>101</width>
+      <x>530</x>
+      <y>350</y>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Quality Assurance</string>
@@ -187,11 +219,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="automatedTesting_checkBox">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>530</x>
       <y>390</y>
-      <width>101</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Automated testing</string>
@@ -200,11 +236,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="cloudAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>530</x>
       <y>440</y>
-      <width>101</width>
+      <width>171</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Cloud administration</string>
@@ -213,11 +253,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="databaseAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>760</x>
       <y>250</y>
-      <width>101</width>
+      <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Database administration</string>
@@ -226,11 +270,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="databaseManger_checkBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>760</x>
       <y>300</y>
-      <width>141</width>
+      <width>211</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Database management</string>
@@ -239,11 +287,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="databaseQuerying_checkBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>760</x>
       <y>350</y>
-      <width>131</width>
+      <width>191</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Database querying</string>
@@ -252,11 +304,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="reactJs_checkBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>760</x>
       <y>390</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>ReactJS</string>
@@ -265,11 +321,15 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="wpf_checkBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>760</x>
       <y>440</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>WPF</string>
@@ -278,10 +338,10 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="backbtn">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>510</y>
-      <width>141</width>
-      <height>41</height>
+      <x>940</x>
+      <y>815</y>
+      <width>211</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -293,82 +353,157 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Back</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="androidDev_checkBox_3">
+   <widget class="QCheckBox" name="androidDev_checkBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>430</y>
-      <width>101</width>
+      <x>970</x>
+      <y>440</y>
+      <width>241</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Android development</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="mvvm_checkBox_3">
+   <widget class="QCheckBox" name="mvvm_checkBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>970</x>
       <y>250</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
     <property name="text">
      <string>MVVM</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="azure_checkBox_3">
+   <widget class="QCheckBox" name="azure_checkBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>970</x>
       <y>350</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
     <property name="text">
      <string>Azure</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="git_checkBox_3">
+   <widget class="QCheckBox" name="git_checkBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>970</x>
       <y>300</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
     <property name="text">
      <string>Git/Github</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ios_checkBox_3">
+   <widget class="QCheckBox" name="ios_checkBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>970</x>
       <y>390</y>
-      <width>101</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>iOS/MacOS</string>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
+   <widget class="QProgressBar" name="progressBar_2">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>590</y>
-      <width>201</width>
-      <height>23</height>
+      <x>410</x>
+      <y>810</y>
+      <width>441</width>
+      <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
     <property name="value">
-     <number>24</number>
+     <number>75</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="specialties_strengthslbl">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>540</y>
+      <width>711</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="specialties_strengthslbl_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>540</y>
+      <width>711</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(255, 255, 255);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_lbl">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>650</y>
+      <width>561</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(170, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
