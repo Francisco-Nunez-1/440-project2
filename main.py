@@ -147,28 +147,66 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
-
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
-        cursor.execute(query)
+        # query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
 
-        # mentee = str(cursor.fetchall())
+        # AOK1 AOK2 AOK3 from mentor
+        query1 = f"SELECT AOK1, AOK2, AOK3 FROM Employees WHERE Email = '{self.user}'"
+        cursor.execute(query1)
         for value in cursor.fetchall():
-            mentee_name = (str(value[0]), str(value[1]))
-            mentee_email = str(value[2])
+            aok1 = str(value[0])
+            aok2 = str(value[1])
+            aok3 = str(value[2])
 
-        print(mentee_name, mentee_email)
+        # For Mentee1
+        query2 = f"Select FName, LName, Email FROM Employees WHERE '{aok1}' IN(AOK1,AOK2,AOK3) " \
+                 f"AND '{aok2}' IN(AOK1,AOK2,AOK3) AND '{aok3}' IN(AOK1,AOK2,AOK3) AND AdvisingRole='Mentee'"
+        print(query2)
+        cursor.execute(query2)
 
-        # connection = mysqlconnect()
-        # connection.cursor()
+        # Prints the first name, last name, and email of the mentees that matches with the mentor
+        value = cursor.fetchall()
+        if value[0]:
+            fname = value[0][0]
+            lname = value[0][1]
+            email = value[0][2]
+        self.mentee1_lbl.setText(fname + " " + lname)
+        self.mentee1_email_lbl.setText(email)
+
+        if value[1]:
+            fname2 = value[1][0]
+            lname2 = value[1][1]
+            email2 = value[1][2]
+            self.mentee2_lbl.setText(fname2 + " " + lname2)
+            self.mentee2_email_lbl.setText(email2)
+
+        if value[2]:
+            fname3 = value[2][0]
+            lname3 = value[2][1]
+            email3 = value[2][2]
+            self.mentee3_lbl.setText(fname3 + " " + lname3)
+            self.mentee3_email_lbl.setText(email3)
+
+        # if len(value[3]) > 0:
+        #     fname4 = value[3][0]
+        #     lname4 = value[3][1]
+        #     email4 = value[3][2]
+        #     self.mentee4_lbl.setText(fname4 + " " + lname4)
+        #     self.mentee4_email_lbl.setText(email4)
         #
+        # if len(value[4]) > 0:
+        #     fname5 = value[4][0]
+        #     lname5 = value[4][1]
+        #     email5 = value[4][2]
+        #     self.mentee5_lbl.setText(fname5 + " " + lname5)
+        #     self.mentee5_email_lbl.setText(email5)
+
         # connection.cursor.close()
         # connection.close()
 
         self.logout_btn.clicked.connect(goto_login)
-
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
