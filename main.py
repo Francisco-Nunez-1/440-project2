@@ -658,6 +658,9 @@ class MenteeQuestionsPg1(QDialog):
         # load the gui to our python code
         loadUi("mentee_questions_pg1.ui", self)
 
+        # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+
         self.userData = userData
         # self.createAccountbtn.clicked.connect(self.connectdatabase)
 
@@ -856,8 +859,8 @@ class MenteeQuestionsPg1(QDialog):
             self.userData.update({"AOK3": checkbox_list[2]})
             self.createAccountbtn.clicked.connect(self.connectdatabase)
 
-        # when next button is clicked it will go back to the previous page
-        self.backbtn.clicked.connect(self.backpage_function)
+
+
         return checkbox_list
 
     def connectdatabase(self):
