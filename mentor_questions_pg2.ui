@@ -44,23 +44,6 @@ font: 75 36pt &quot;MS Shell Dlg 2&quot;;
      <string>Mentor Questions </string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>120</y>
-      <width>1021</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(255, 255, 255);
-font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Fill in all fields, onces done click &quot;Create Account&quot; button. </string>
-    </property>
-   </widget>
    <widget class="QLabel" name="sliderlbl">
     <property name="geometry">
      <rect>
@@ -76,7 +59,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Now… Rate your ability to teach beginners (0-10 scale slider)
+     <string>Rate your ability to teach beginners (0-10 scale slider)
        0 being not capable and 10 being very capable</string>
     </property>
    </widget>
@@ -183,10 +166,10 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>535</x>
       <y>810</y>
-      <width>441</width>
-      <height>61</height>
+      <width>300</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
