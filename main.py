@@ -136,7 +136,7 @@ class LoginScreen(QDialog):
             widget.addWidget(mentor_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
         elif role == "Mentee":
-            mentee_login = MenteeLanding()
+            mentee_login = MenteeLanding(user)
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -149,19 +149,42 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
+        print(self.user)
 
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
-        cursor.execute(query)
-
-        # mentee = str(cursor.fetchall())
+        query1 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
+        cursor.execute(query1)
         for value in cursor.fetchall():
-            mentee_name = (str(value[0]), str(value[1]))
-            mentee_email = str(value[2])
+            mentee1_name = (str(value[0]) + " " + str(value[1]))
+            mentee1_email = str(value[2])
+        print(mentee1_name, mentee1_email)
 
-        print(mentee_name, mentee_email)
+        self.mentee1_lbl.setText(mentee1_name)
+        self.mentee1_email_lbl.setText(mentee1_email)
+
+        query2 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + 'ljwill@gmail.com' + "\'"
+        cursor.execute(query2)
+        for value in cursor.fetchall():
+            mentee2_name = (str(value[0]) + " " + str(value[1]))
+            mentee2_email = str(value[2])
+
+        print(mentee2_name, mentee2_email)
+        self.mentee2_lbl.setText(mentee2_name)
+        self.mentee2_email_lbl.setText(mentee2_email)
+
+
+        # query3 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + 'something + "\'"
+        # cursor.execute(query3)
+        # for value in cursor.fetchall():
+        #     mentee2_name = (str(value[0]) + " " + str(value[1]))
+        #     mentee2_email = str(value[2])
+        #
+        # print(mentee3_name, mentee3_email)
+        # self.mentee3_lbl.setText(mentee3_name)
+        # self.mentee3_email_lbl.setText(mentee3_email)
+
 
         # connection = mysqlconnect()
         # connection.cursor()
@@ -174,10 +197,11 @@ class MentorLanding(QDialog):
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
-    def __init__(self):
+    def __init__(self, user):
         super(MenteeLanding, self).__init__()
         loadUi("mentee_landing_pg.ui", self)
 
+        self.user = user
         self.logout_btn.clicked.connect(goto_login)
 
 
@@ -243,7 +267,8 @@ class SecondCreateAccountScreen(QDialog):
         super(SecondCreateAccountScreen, self).__init__()
 
         self.userData = userData
-        # print(self.userData)
+        print(self.userData)
+
         # load the gui to our python code
         loadUi("second_create_account.ui", self)
 
@@ -318,7 +343,6 @@ class SecondCreateAccountScreen(QDialog):
         #         connection.close()
         #         print("MySQL connection is closed")
 
-
     # Loads the corresponding form page depending on which advising role is selected
     def check(self):
         if self.mentor_rdbtn.isChecked():
@@ -342,6 +366,7 @@ class SecondCreateAccountScreen(QDialog):
         widget.addWidget(mentee_Pg1)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
 # Questions for Mentors
 class MentorQuestionsPg1(QDialog):
     def __init__(self, userData):
@@ -350,13 +375,10 @@ class MentorQuestionsPg1(QDialog):
         loadUi("mentor_questions_pg1.ui", self)
 
         self.userData = userData
+        print(self.userData)
 
         # when the back button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
-
-        # Work on this if there is time
-        # backpage_name = SecondCreateAccountScreen(self.userData)
-        # self.backbtn.clicked.connect(backpage_function(SecondCreateAccountScreen(self.userData)))
 
 
         # check boxes functionality
@@ -566,7 +588,9 @@ class MentorQuestionsPg1(QDialog):
 
             self.userData.update({"yearsWithCompany": yearsWithCompany})
             self.userData.update({"yearsInIndustry": yearsinIndustry})
-            self.userData.update({"areasOfKnowledge": checkbox_list})
+            self.userData.update({"areasOfKnowledge1": checkbox_list})
+            self.userData.update({"areasOfKnowledge2": checkbox_list})
+            self.userData.update({"areasOfKnowledge3": checkbox_list})
             self.nextbtn.clicked.connect(self.nextpage_function)
 
         # when back button is clicked it will go back to the previous page
@@ -593,33 +617,44 @@ class MentorQuestionsPg2(QDialog):
         loadUi("mentor_questions_pg2.ui", self)
 
         self.userData = userData
+        print(self.userData)
 
         # # when next button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
-      
+
+        ability_num = self.spinBox.value()
+        print(ability_num)
         hobby1 = self.hobby1_textbx.text()
+        print(hobby1)
         hobby2 = self.hobby2_textbx.text()
+        print(hobby2)
         hobby3 = self.hobby3_textbx.text()
+        print(hobby3)
+        bio = self.bio_textbx.toPlainText()
+        print(hobby3)
 
-        list_of_hobbies = []
+        self.createAccountbtn.clicked.connect(self.connectdatabase)
 
-        list_of_hobbies.append(self.hobby1)
-        list_of_hobbies.append(self.hobby3)
-        list_of_hobbies.append(self.hobby3)
+        # list_of_hobbies = []
+        #
+        # list_of_hobbies.append(self.hobby1)
+        # list_of_hobbies.append(self.hobby3)
+        # list_of_hobbies.append(self.hobby3)
 
-        print(list_of_hobbies)
+        # print(list_of_hobbies)
 
         # check fields arent blank and password matches before going to next page
-        if len(ability_num) == 0 or len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
-            self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
-        else:
+        if ability_num and hobby1 and hobby2 and hobby3 and bio:
+            # self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
+            self.createAccountbtn.clicked.connect(self.connectdatabase)
+        # else:
             # this will go to the login function
-            login = LoginScreen()
-            widget.addWidget(login)
-            widget.setCurrentIndex(widget.currentIndex() + 1)
+            # login = LoginScreen()
+            # widget.addWidget(login)
+            # widget.setCurrentIndex(widget.currentIndex() + 1)
 
     # Insert data into the database
-    # def connectdatabase(self):
+    def connectdatabase(self):
         try:
             connection = mysqlconnect()
 
@@ -632,14 +667,15 @@ class MentorQuestionsPg2(QDialog):
                 print("You're connected to database: ", record)
 
                 sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, Department," \
-                      "JobPosition, YearsCo, YearsInd, AreasOfKnowledge, Hobbies, Bio)" \
-                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, $s, $s, $s, $s)"
+                      "JobPosition, YearsCo, YearsInd, AOK1, AOK2, AOK3, Hobby1, Hobby2, Hobby3)" \
+                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
                 val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
                        self.userData['email'], self.userData['password'], self.userData['advisingRole'],
                        self.userData['myersBriggs'], self.userData['department'], self.userData['jobPosition'],
                        self.userData['yearsWithCompany'], self.userData['yearsInIndustry'],
-                       self.userData['areasOfKnowledge'], self.userData['hobbies'], self.userData['bio'])
+                       self.userData['aok1'], self.userData['aok2'], self.userData['aok3'],
+                       self.userData['hobby1'], self.userData['hobby2'], self.userData['hobby3'])
 
                 cursor.execute(sql, val)
                 connection.commit()
@@ -656,18 +692,6 @@ class MentorQuestionsPg2(QDialog):
                 print("MySQL connection is closed")
                 self.createAccountbtn.clicked.connect(goto_login)
 
-
-       
-
-        # when next button is clicked it will go to nextpage_funtion
-        self.createAccountbtn.clicked.connect(self.goto_login)
-
-#     def goto_login(self):
-#         # this will open the new login window in the current window by calling the .ui class
-#         login = LoginScreen()
-#         widget.addWidget(login)
-#         widget.setCurrentIndex(widget.currentIndex() + 1)
-
     # go back to MentorQuestionsPg1
     def backpage_function(self):
         mentor_pg1 = MentorQuestionsPg1(self.userData)
@@ -682,6 +706,7 @@ class MenteeQuestionsPg1(QDialog):
         loadUi("mentee_questions_pg1.ui", self)
 
         self.userData = userData
+        print(userData)
 
         # this will command to go to gotoLogin function when the button is clicked
         # self.createAccountbtn.clicked.connect(self.)
@@ -889,12 +914,11 @@ class MenteeQuestionsPg1(QDialog):
         elif num_in_list > 3:
             self.error_lbl.setText("Can't choose more than 3\n allowed 3 only")
         elif num_in_list == 3:
-          
-        # when next button is clicked it will go to nextpage_funtion
-        self.createAccountbtn.clicked.connect(goto_login)
+            # when next button is clicked it will go to nextpage_funtion
+            self.createAccountbtn.clicked.connect(goto_login)
 
-        # when next button is clicked it will go back to the previous page
-        self.backbtn.clicked.connect(self.backpage_function)
+            # when next button is clicked it will go back to the previous page
+            self.backbtn.clicked.connect(self.backpage_function)
 
     # go back to SecondAccountScreen
     def backpage_function(self):
