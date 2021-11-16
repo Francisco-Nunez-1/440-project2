@@ -525,9 +525,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="specialties_strengthslbl">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>710</y>
-      <width>711</width>
+      <x>310</x>
+      <y>700</y>
+      <width>691</width>
       <height>81</height>
      </rect>
     </property>
@@ -559,9 +559,9 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="error_lbl">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>1000</x>
       <y>690</y>
-      <width>561</width>
+      <width>361</width>
       <height>91</height>
      </rect>
     </property>
