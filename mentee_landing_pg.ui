@@ -29,36 +29,19 @@ background-color:qlineargradient(spread:pad, x1:0.0511364, y1:0.0687727, x2:1, y
    <widget class="QLabel" name="mentee_landing_lbl">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>50</x>
+      <y>5</y>
       <width>711</width>
       <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">color:rgb(255, 255, 255);
-font: 75 36pt &quot;MS Shell Dlg 2&quot;;
+font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 </string>
     </property>
     <property name="text">
-     <string>Logged in as Mentee</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentee_lbl">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>120</y>
-      <width>1021</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(255, 255, 255);
-font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Mentee Name</string>
+     <string>Mentee | Landing Page</string>
     </property>
    </widget>
    <widget class="QLabel" name="selc_mentor_lbl">
@@ -82,7 +65,7 @@ color:rgb(255, 255, 255);
    <widget class="QLabel" name="mentor_matches_lbl">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>140</x>
       <y>390</y>
       <width>481</width>
       <height>61</height>
@@ -100,10 +83,10 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="logout_btn">
     <property name="geometry">
      <rect>
-      <x>1160</x>
-      <y>60</y>
-      <width>191</width>
-      <height>71</height>
+      <x>1110</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -205,24 +188,6 @@ color:rgb(255, 255, 255);
      <string>Mentor 1 Bio</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="delete1_btn">
-    <property name="geometry">
-     <rect>
-      <x>1180</x>
-      <y>470</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 20px;
-background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Delete</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="mentor1_lbl">
     <property name="geometry">
      <rect>
@@ -259,24 +224,6 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Add</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="delete2_btn">
-    <property name="geometry">
-     <rect>
-      <x>1180</x>
-      <y>560</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 20px;
-background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Delete</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="add2_btn">
     <property name="geometry">
      <rect>
@@ -293,78 +240,6 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="add3_btn">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>660</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 20px;
-background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentor3_bio_lbl">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>640</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Mentor 3 Bio</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="delete3_btn">
-    <property name="geometry">
-     <rect>
-      <x>1180</x>
-      <y>660</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 20px;
-background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Delete</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentor3_lbl">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>640</y>
-      <width>481</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Mentor 3 Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="myers_briggs_1">
@@ -401,24 +276,6 @@ color:rgb(255, 255, 255);
     </property>
     <property name="text">
      <string>Myers Briggs 2</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="myers_briggs_3">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>640</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Myers Briggs 3</string>
     </property>
    </widget>
   </widget>

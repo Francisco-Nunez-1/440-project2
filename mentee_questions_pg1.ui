@@ -29,50 +29,50 @@ background-color:qlineargradient(spread:pad, x1:0.0511364, y1:0.0687727, x2:1, y
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>50</x>
+      <y>5</y>
       <width>711</width>
       <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">color:rgb(255, 255, 255);
-font: 75 36pt &quot;MS Shell Dlg 2&quot;;
+font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 </string>
     </property>
     <property name="text">
-     <string>Mentee Questions </string>
+     <string>Create New Account | Mentee  </string>
     </property>
    </widget>
    <widget class="QPushButton" name="createAccountbtn">
     <property name="geometry">
      <rect>
-      <x>1160</x>
-      <y>815</y>
-      <width>211</width>
-      <height>51</height>
+      <x>1110</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Create Account</string>
+     <string>Create </string>
     </property>
    </widget>
    <widget class="QLabel" name="yearsWithCompanylbl_2">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>140</y>
-      <width>1061</width>
+      <x>140</x>
+      <y>240</y>
+      <width>1191</width>
       <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 18pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
@@ -83,8 +83,8 @@ color:rgb(255, 255, 255);
    <widget class="QCheckBox" name="programming_checkBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>250</y>
+      <x>280</x>
+      <y>370</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -100,8 +100,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="htmlCssJs_checkBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>300</y>
+      <x>280</x>
+      <y>420</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -117,8 +117,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="cSharpNet_checkBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>350</y>
+      <x>280</x>
+      <y>470</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -134,8 +134,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="c_checkBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>390</y>
+      <x>280</x>
+      <y>510</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -151,8 +151,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="swift_checkBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>440</y>
+      <x>280</x>
+      <y>560</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -168,8 +168,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="sql_checkBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>250</y>
+      <x>500</x>
+      <y>370</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -185,8 +185,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="networkAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>300</y>
+      <x>500</x>
+      <y>420</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -196,14 +196,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Network administration</string>
+     <string>Network Administration</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="qualityAssurance_checkBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>350</y>
+      <x>500</x>
+      <y>470</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -219,8 +219,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="automatedTesting_checkBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>390</y>
+      <x>500</x>
+      <y>510</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -230,14 +230,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Automated testing</string>
+     <string>Automated Testing</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="cloudAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>440</y>
+      <x>500</x>
+      <y>560</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -247,14 +247,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Cloud administration</string>
+     <string>Cloud Administration</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="databaseAdmin_checkBox">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>250</y>
+      <x>730</x>
+      <y>370</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -264,14 +264,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Database administration</string>
+     <string>Database Administration</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="databaseManger_checkBox">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>300</y>
+      <x>730</x>
+      <y>420</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -281,14 +281,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Database management</string>
+     <string>Database Management</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="databaseQuerying_checkBox">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>350</y>
+      <x>730</x>
+      <y>470</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -298,14 +298,14 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Database querying</string>
+     <string>Database Querying</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="reactJs_checkBox">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>390</y>
+      <x>730</x>
+      <y>510</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -321,8 +321,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="wpf_checkBox">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>440</y>
+      <x>730</x>
+      <y>560</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -335,29 +335,11 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>WPF</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="backbtn">
-    <property name="geometry">
-     <rect>
-      <x>940</x>
-      <y>815</y>
-      <width>211</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 20px;
-background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Back</string>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="androidDev_checkBox">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>440</y>
+      <x>960</x>
+      <y>560</y>
       <width>241</width>
       <height>41</height>
      </rect>
@@ -367,14 +349,14 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Android development</string>
+     <string>Android Development</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="mvvm_checkBox">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>250</y>
+      <x>960</x>
+      <y>370</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -390,8 +372,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="azure_checkBox">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>350</y>
+      <x>960</x>
+      <y>470</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -407,8 +389,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="git_checkBox">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>300</y>
+      <x>960</x>
+      <y>420</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -424,8 +406,8 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QCheckBox" name="ios_checkBox">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>390</y>
+      <x>960</x>
+      <y>510</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -441,10 +423,10 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QProgressBar" name="progressBar_2">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>810</y>
-      <width>441</width>
-      <height>61</height>
+      <x>535</x>
+      <y>820</y>
+      <width>300</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -458,8 +440,8 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="specialties_strengthslbl">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>540</y>
+      <x>260</x>
+      <y>610</y>
       <width>711</width>
       <height>81</height>
      </rect>
@@ -475,8 +457,8 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="specialties_strengthslbl_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>540</y>
+      <x>270</x>
+      <y>660</y>
       <width>711</width>
       <height>81</height>
      </rect>
@@ -493,7 +475,7 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>840</x>
-      <y>650</y>
+      <y>610</y>
       <width>561</width>
       <height>91</height>
      </rect>
@@ -504,6 +486,24 @@ color:rgb(170, 0, 0);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backbtn">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
     </property>
    </widget>
   </widget>
