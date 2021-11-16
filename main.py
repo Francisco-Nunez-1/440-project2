@@ -411,25 +411,25 @@ class MentorQuestionsPg1(QDialog):
 
         # programming
         if self.programming_checkBox.isChecked():
-            self.programming = "Programming"
+            self.programming = "Programming  "
             checkbox_list.append(self.programming)
         else:
             self.programming = ''
         # SQL
         if self.sql_checkBox.isChecked():
-            self.SQL = "SQL"
+            self.SQL = "SQL  "
             checkbox_list.append(self.SQL)
         else:
             self.SQL = ''
         # databaseAdmin
         if self.databaseAdmin_checkBox.isChecked():
-            self.databaseAdmin = "Database Admin"
+            self.databaseAdmin = "Database Admin  "
             checkbox_list.append(self.databaseAdmin)
         else:
             self.databaseAdmin = ''
         # mvvm_checkBox
         if self.mvvm_checkBox.isChecked():
-            self.mvvm = "MVVM"
+            self.mvvm = "MVVM  "
             checkbox_list.append(self.mvvm)
         else:
             self.mvvm = ''
@@ -582,23 +582,29 @@ class MentorQuestionsPg2(QDialog):
 
         self.userData = userData
         self.backbtn.clicked.connect(self.backpage_function)
-        self.createAccountbtn.clicked.connect(self.connectdatabase)
+        # When create account button is clicked it will go to validate function
+        self.createAccountbtn.clicked.connect(self.validate)
 
+    # This function will validate that no fields are left empty
+    def validate(self):
+        ability_num = self.spinBox.value()
         hobby1 = self.hobby1_textbx.text()
         hobby2 = self.hobby2_textbx.text()
         hobby3 = self.hobby3_textbx.text()
+        bio = self.bio_textbx.toPlainText()
 
+        # check fields arent blank before recording to database and going to the login page
+        if len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
+            self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
+        else:
+            print(f'num = {ability_num}')
+            print(f'h1 = {hobby1}')
+            print(f'h1 = {hobby2}')
+            print(f'h1 = {hobby3}')
+            print(f'bio = {bio}')
+            # go to connectdatabase function so it can save data in database
+            self.connectdatabase()
 
-    #
-    #     # check fields arent blank and password matches before going to next page
-    #     if len(ability_num) == 0 or len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
-    #         self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
-    #     else:
-    #         # this will go to the login function
-    #         login = LoginScreen()
-    #         widget.addWidget(login)
-    #         widget.setCurrentIndex(widget.currentIndex() + 1)
-    #
     # # Insert data into the database
     def connectdatabase(self):
         try:
@@ -892,7 +898,6 @@ class MenteeQuestionsPg1(QDialog):
                     connection.close()
                     print("MySQL connection is closed")
                     goto_login()
-
 
     # go back to SecondAccountScreen
     def backpage_function(self):
