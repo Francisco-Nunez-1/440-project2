@@ -653,14 +653,7 @@ class MenteeQuestionsPg1(QDialog):
         loadUi("mentee_questions_pg1.ui", self)
 
         self.userData = userData
-
-        # this will command to go to gotoLogin function when the button is clicked
-        # self.createAccountbtn.clicked.connect(self.)
-
-        # check boxes functionality
-
-        # This lines of code will check if the checkboxes are checked with (stateChanged) and...
-        # ...then it goes into function checked_checkbox
+        # self.createAccountbtn.clicked.connect(self.connectdatabase)
 
         # programming_checkBox
         self.programming_checkBox.stateChanged.connect(lambda: self.checked_checkbox())
@@ -810,7 +803,7 @@ class MenteeQuestionsPg1(QDialog):
             checkbox_list.append(self.ios)
         else:
             self.ios = ''
-        print(checkbox_list)
+
         # swift_checkBox # **************************************
         if self.swift_checkBox.isChecked():
             self.swift = "Swift  "
@@ -842,29 +835,64 @@ class MenteeQuestionsPg1(QDialog):
         print(num_in_list)
 
         # Display the names of the check boxes that were checked on to the GUI
-        self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
-                                              f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
-                                              f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}{self.azure}'
-                                              f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
-                                              f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
+        if num_in_list < 4:
+            self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
+                                                  f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
+                                                  f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}'
+                                                  f'{self.azure}{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
+                                                  f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
 
-        # def goto_login(self):
-        #     # this will open the new login window in the current window by calling the .ui class
-        #     login = LoginScreen()
-        #     widget.addWidget(login)
-        #     widget.setCurrentIndex(widget.currentIndex() + 1)
-
-        # check fields arent blank and password matches before going to next page
-        if num_in_list < 3:
-            self.error_lbl.setText("Can't choose less than 3\n allowed 3 only ")
-        elif num_in_list > 3:
-            self.error_lbl.setText("Can't choose more than 3\n allowed 3 only")
+        if num_in_list > 3:
+            self.error_lbl.setText("Must choose 3.")
         elif num_in_list == 3:
-            # when next button is clicked it will go to nextpage_funtion
-            self.createAccountbtn.clicked.connect(goto_login)
+            self.userData.update({"AOK1": checkbox_list[0]})
+            self.userData.update({"AOK2": checkbox_list[1]})
+            self.userData.update({"AOK3": checkbox_list[2]})
+            self.createAccountbtn.clicked.connect(self.connectdatabase)
 
-            # when next button is clicked it will go back to the previous page
-            self.backbtn.clicked.connect(self.backpage_function)
+        # when next button is clicked it will go back to the previous page
+        self.backbtn.clicked.connect(self.backpage_function)
+        return checkbox_list
+
+    def connectdatabase(self):
+        print('connecting')
+        strengths_list = self.checked_checkbox()
+        if len(strengths_list) == 3:
+            try:
+                connection = mysqlconnect()
+
+                if connection.is_connected():
+                    db_info = connection.get_server_info()
+                    print("Connected to MySQL Server version ", db_info)
+                    cursor = connection.cursor()
+                    cursor.execute("select database();")
+                    record = cursor.fetchone()
+                    print("You're connected to database: ", record)
+
+                    sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, Department," \
+                          "JobPosition, AOK1, AOK2, AOK3)" \
+                          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+                    val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
+                           self.userData['email'], self.userData['password'], self.userData['advisingRole'],
+                           self.userData['myersBriggs'], self.userData['department'], self.userData['jobPosition'],
+                           self.userData['AOK1'], self.userData['AOK2'], self.userData['AOK3'])
+
+                    cursor.execute(sql, val)
+                    connection.commit()
+
+                    print(cursor.rowcount, "record inserted.")
+
+            except Exception as e:
+                print("Error while connecting to MySQL", e)
+
+            finally:
+                if connection.is_connected():
+                    cursor.close()
+                    connection.close()
+                    print("MySQL connection is closed")
+                    goto_login()
+
 
     # go back to SecondAccountScreen
     def backpage_function(self):
