@@ -48,7 +48,6 @@ def goto_login():
 #     widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
 class WelcomeScreen(QDialog):
@@ -61,7 +60,6 @@ class WelcomeScreen(QDialog):
         self.loginbtn.clicked.connect(goto_login)
         # this will command to go to gotocreateAccount function when the button is clicked
         self.createAccountbtn.clicked.connect(self.goto_CreateAccount)
-
 
     # def goto_login(self):
     #     # this will open the new login window in the current window by calling the .ui class
@@ -136,7 +134,7 @@ class LoginScreen(QDialog):
             widget.addWidget(mentor_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
         elif role == "Mentee":
-            mentee_login = MenteeLanding(user)
+            mentee_login = MenteeLanding()
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -149,42 +147,19 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
-        print(self.user)
 
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        query1 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
-        cursor.execute(query1)
+        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
+        cursor.execute(query)
+
+        # mentee = str(cursor.fetchall())
         for value in cursor.fetchall():
-            mentee1_name = (str(value[0]) + " " + str(value[1]))
-            mentee1_email = str(value[2])
-        print(mentee1_name, mentee1_email)
+            mentee_name = (str(value[0]), str(value[1]))
+            mentee_email = str(value[2])
 
-        self.mentee1_lbl.setText(mentee1_name)
-        self.mentee1_email_lbl.setText(mentee1_email)
-
-        query2 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + 'ljwill@gmail.com' + "\'"
-        cursor.execute(query2)
-        for value in cursor.fetchall():
-            mentee2_name = (str(value[0]) + " " + str(value[1]))
-            mentee2_email = str(value[2])
-
-        print(mentee2_name, mentee2_email)
-        self.mentee2_lbl.setText(mentee2_name)
-        self.mentee2_email_lbl.setText(mentee2_email)
-
-
-        # query3 = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + 'something + "\'"
-        # cursor.execute(query3)
-        # for value in cursor.fetchall():
-        #     mentee2_name = (str(value[0]) + " " + str(value[1]))
-        #     mentee2_email = str(value[2])
-        #
-        # print(mentee3_name, mentee3_email)
-        # self.mentee3_lbl.setText(mentee3_name)
-        # self.mentee3_email_lbl.setText(mentee3_email)
-
+        print(mentee_name, mentee_email)
 
         # connection = mysqlconnect()
         # connection.cursor()
@@ -197,11 +172,10 @@ class MentorLanding(QDialog):
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
-    def __init__(self, user):
+    def __init__(self):
         super(MenteeLanding, self).__init__()
         loadUi("mentee_landing_pg.ui", self)
 
-        self.user = user
         self.logout_btn.clicked.connect(goto_login)
 
 
@@ -267,8 +241,7 @@ class SecondCreateAccountScreen(QDialog):
         super(SecondCreateAccountScreen, self).__init__()
 
         self.userData = userData
-        print(self.userData)
-
+        # print(self.userData)
         # load the gui to our python code
         loadUi("second_create_account.ui", self)
 
@@ -304,7 +277,7 @@ class SecondCreateAccountScreen(QDialog):
             #                                      database='cis440fall2021group1',
             #                                      user='fall2021group1',
             #                                      password='fall2021group1')
-            
+
             # connection = mysqlconnect()
 
             # if connection.is_connected():
@@ -321,17 +294,17 @@ class SecondCreateAccountScreen(QDialog):
             self.error_lbl.setText("Please fill in all fields")
             print("A field is empty")
         else:
-                    # sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType," \
-                    #       "Department, JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                    #
-                    # val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
-                    #        self.userData['email'], self.userData['password'],
-                    #        advisingRole, myersBriggs, '0', department, jobPosition)
-                    #
-                    # cursor.execute(sql, val)
-                    # connection.commit()
-                    #
-                    # print(cursor.rowcount, "record inserted.")
+            # sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType," \
+            #       "Department, JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            #
+            # val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
+            #        self.userData['email'], self.userData['password'],
+            #        advisingRole, myersBriggs, '0', department, jobPosition)
+            #
+            # cursor.execute(sql, val)
+            # connection.commit()
+            #
+            # print(cursor.rowcount, "record inserted.")
             self.check()
 
         # except Exception as e:
@@ -375,13 +348,9 @@ class MentorQuestionsPg1(QDialog):
         loadUi("mentor_questions_pg1.ui", self)
 
         self.userData = userData
-        print(self.userData)
 
         # when the back button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
-
-
-        # check boxes functionality
 
         # This lines of code will check if the checkboxes are checked with (stateChanged) and...
         # ...then it goes into function checked_checkbox
@@ -437,27 +406,30 @@ class MentorQuestionsPg1(QDialog):
         # list for check boxes to be stored
         checkbox_list = []
 
+        yearsWithCompany = self.yearsWithCompany_textbx.text()
+        yearsinIndustry = self.yearsinIndustry_textbx.text()
+
         # programming
         if self.programming_checkBox.isChecked():
-            self.programming = "Programming  "
+            self.programming = "Programming"
             checkbox_list.append(self.programming)
         else:
             self.programming = ''
         # SQL
         if self.sql_checkBox.isChecked():
-            self.SQL = "SQL  "
+            self.SQL = "SQL"
             checkbox_list.append(self.SQL)
         else:
             self.SQL = ''
         # databaseAdmin
         if self.databaseAdmin_checkBox.isChecked():
-            self.databaseAdmin = "Database Admin  "
+            self.databaseAdmin = "Database Admin"
             checkbox_list.append(self.databaseAdmin)
         else:
             self.databaseAdmin = ''
         # mvvm_checkBox
         if self.mvvm_checkBox.isChecked():
-            self.mvvm = "MVVM  "
+            self.mvvm = "MVVM"
             checkbox_list.append(self.mvvm)
         else:
             self.mvvm = ''
@@ -533,7 +505,6 @@ class MentorQuestionsPg1(QDialog):
             checkbox_list.append(self.ios)
         else:
             self.ios = ''
-        print(checkbox_list)
         # swift_checkBox # **************************************
         if self.swift_checkBox.isChecked():
             self.swift = "Swift  "
@@ -559,49 +530,42 @@ class MentorQuestionsPg1(QDialog):
         else:
             self.androidDev = ''
 
-        # print the names of the check boxes that were checked
-        print(checkbox_list)
         num_in_list = (len(checkbox_list))
-        print(num_in_list)
+        # print(checkbox_list)
+        # print(num_in_list)
 
-        # Display the names of the check boxes that were checked on to the GUI
-        self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
-                                              f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
-                                              f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}{self.azure}'
-                                              f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
-                                              f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
-
-        yearsWithCompany = self.yearsWithCompany_textbx.text()
-        yearsinIndustry = self.yearsinIndustry_textbx.text()
-
-        print(yearsinIndustry)
-        print(yearsWithCompany)
+        if num_in_list < 4:
+            # Display the names of the check boxes that were checked on to the GUI
+            self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
+                                                  f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
+                                                  f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}{self.azure}'
+                                                  f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
+                                                  f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
 
         # check fields arent blank and password matches before going to next page
-        if len(yearsinIndustry) == 0 and len(yearsWithCompany) == 0:
-            self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
-        elif num_in_list < 3:
-            self.error_lbl.setText("Can't choose less than 3\n allowed 3 only ")
-        elif num_in_list > 3:
-            self.error_lbl.setText("Can't choose more than 3\n allowed 3 only")
+        if num_in_list > 3:
+            self.error_lbl.setText("Must choose 3.")
         elif num_in_list == 3:
-
             self.userData.update({"yearsWithCompany": yearsWithCompany})
             self.userData.update({"yearsInIndustry": yearsinIndustry})
-            self.userData.update({"areasOfKnowledge1": checkbox_list})
-            self.userData.update({"areasOfKnowledge2": checkbox_list})
-            self.userData.update({"areasOfKnowledge3": checkbox_list})
+            self.userData.update({"AOK1": checkbox_list[0]})
+            self.userData.update({"AOK2": checkbox_list[1]})
+            self.userData.update({"AOK3": checkbox_list[2]})
+
+        if yearsWithCompany and yearsinIndustry:
             self.nextbtn.clicked.connect(self.nextpage_function)
 
-        # when back button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
+
+        return checkbox_list
 
     # go to MentorQuestionsPg2
     def nextpage_function(self):
-        # this will open the SecondCreateAccountScreen window in the current window by calling the .ui class
-        mentor_pg2 = MentorQuestionsPg2(self.userData)
-        widget.addWidget(mentor_pg2)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
+        strengths_list = self.checked_checkbox()
+        if len(strengths_list) == 3:
+            mentor_pg2 = MentorQuestionsPg2(self.userData)
+            widget.addWidget(mentor_pg2)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
 
     # go back to SecondAccountScreen
     def backpage_function(self):
@@ -617,43 +581,25 @@ class MentorQuestionsPg2(QDialog):
         loadUi("mentor_questions_pg2.ui", self)
 
         self.userData = userData
-        print(self.userData)
-
-        # # when next button is clicked it will go back to the previous page
         self.backbtn.clicked.connect(self.backpage_function)
-
-        ability_num = self.spinBox.value()
-        print(ability_num)
-        hobby1 = self.hobby1_textbx.text()
-        print(hobby1)
-        hobby2 = self.hobby2_textbx.text()
-        print(hobby2)
-        hobby3 = self.hobby3_textbx.text()
-        print(hobby3)
-        bio = self.bio_textbx.toPlainText()
-        print(hobby3)
-
         self.createAccountbtn.clicked.connect(self.connectdatabase)
 
-        # list_of_hobbies = []
-        #
-        # list_of_hobbies.append(self.hobby1)
-        # list_of_hobbies.append(self.hobby3)
-        # list_of_hobbies.append(self.hobby3)
+        hobby1 = self.hobby1_textbx.text()
+        hobby2 = self.hobby2_textbx.text()
+        hobby3 = self.hobby3_textbx.text()
 
-        # print(list_of_hobbies)
 
-        # check fields arent blank and password matches before going to next page
-        if ability_num and hobby1 and hobby2 and hobby3 and bio:
-            # self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
-            self.createAccountbtn.clicked.connect(self.connectdatabase)
-        # else:
-            # this will go to the login function
-            # login = LoginScreen()
-            # widget.addWidget(login)
-            # widget.setCurrentIndex(widget.currentIndex() + 1)
-
-    # Insert data into the database
+    #
+    #     # check fields arent blank and password matches before going to next page
+    #     if len(ability_num) == 0 or len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
+    #         self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
+    #     else:
+    #         # this will go to the login function
+    #         login = LoginScreen()
+    #         widget.addWidget(login)
+    #         widget.setCurrentIndex(widget.currentIndex() + 1)
+    #
+    # # Insert data into the database
     def connectdatabase(self):
         try:
             connection = mysqlconnect()
@@ -667,15 +613,16 @@ class MentorQuestionsPg2(QDialog):
                 print("You're connected to database: ", record)
 
                 sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType, Department," \
-                      "JobPosition, YearsCo, YearsInd, AOK1, AOK2, AOK3, Hobby1, Hobby2, Hobby3)" \
-                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                      "JobPosition, YearsCo, YearsInd, AOK1, AOK2, AOK3, Hobby1, Hobby2, Hobby3, AbScore, Bio)" \
+                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
                 val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
                        self.userData['email'], self.userData['password'], self.userData['advisingRole'],
                        self.userData['myersBriggs'], self.userData['department'], self.userData['jobPosition'],
                        self.userData['yearsWithCompany'], self.userData['yearsInIndustry'],
-                       self.userData['aok1'], self.userData['aok2'], self.userData['aok3'],
-                       self.userData['hobby1'], self.userData['hobby2'], self.userData['hobby3'])
+                       self.userData['AOK1'], self.userData['AOK2'], self.userData['AOK3'], self.hobby1_textbx.text(),
+                       self.hobby2_textbx.text(), self.hobby3_textbx.text(), self.spinBox.text(),
+                       self.bio_textbx.toPlainText())
 
                 cursor.execute(sql, val)
                 connection.commit()
@@ -690,7 +637,7 @@ class MentorQuestionsPg2(QDialog):
                 cursor.close()
                 connection.close()
                 print("MySQL connection is closed")
-                self.createAccountbtn.clicked.connect(goto_login)
+                goto_login()
 
     # go back to MentorQuestionsPg1
     def backpage_function(self):
@@ -706,7 +653,6 @@ class MenteeQuestionsPg1(QDialog):
         loadUi("mentee_questions_pg1.ui", self)
 
         self.userData = userData
-        print(userData)
 
         # this will command to go to gotoLogin function when the button is clicked
         # self.createAccountbtn.clicked.connect(self.)
@@ -902,11 +848,11 @@ class MenteeQuestionsPg1(QDialog):
                                               f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
                                               f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
 
-    # def goto_login(self):
-    #     # this will open the new login window in the current window by calling the .ui class
-    #     login = LoginScreen()
-    #     widget.addWidget(login)
-    #     widget.setCurrentIndex(widget.currentIndex() + 1)
+        # def goto_login(self):
+        #     # this will open the new login window in the current window by calling the .ui class
+        #     login = LoginScreen()
+        #     widget.addWidget(login)
+        #     widget.setCurrentIndex(widget.currentIndex() + 1)
 
         # check fields arent blank and password matches before going to next page
         if num_in_list < 3:
