@@ -213,7 +213,7 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <number>10</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="createAccountbtn_2">
+   <widget class="QPushButton" name="createAccountbtn">
     <property name="geometry">
      <rect>
       <x>1170</x>
