@@ -29,8 +29,8 @@ background-color:qlineargradient(spread:pad, x1:0.0511364, y1:0.0687727, x2:1, y
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>125</x>
-      <y>425</y>
+      <x>450</x>
+      <y>160</y>
       <width>531</width>
       <height>91</height>
      </rect>
@@ -47,8 +47,8 @@ font: 75 40pt &quot;MS Shell Dlg 2&quot;;
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>815</x>
-      <y>200</y>
+      <x>480</x>
+      <y>340</y>
       <width>651</width>
       <height>131</height>
      </rect>
@@ -64,8 +64,8 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="loginbtn">
     <property name="geometry">
      <rect>
-      <x>845</x>
-      <y>400</y>
+      <x>510</x>
+      <y>510</y>
       <width>391</width>
       <height>71</height>
      </rect>
@@ -82,8 +82,8 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="createAccountbtn">
     <property name="geometry">
      <rect>
-      <x>845</x>
-      <y>600</y>
+      <x>510</x>
+      <y>660</y>
       <width>391</width>
       <height>71</height>
      </rect>
