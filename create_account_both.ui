@@ -259,6 +259,24 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="backbtn">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
@@ -302,6 +320,7 @@ color:rgb(170, 0, 0);</string>
   <tabstop>password_textbx</tabstop>
   <tabstop>confirmPassword_textbx</tabstop>
   <tabstop>phonenumber_textbx</tabstop>
+  <tabstop>backbtn</tabstop>
   <tabstop>nextbtn</tabstop>
  </tabstops>
  <resources/>

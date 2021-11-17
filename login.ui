@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
-    <height>940</height>
+    <width>1444</width>
+    <height>946</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,10 +46,10 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="loginbtn">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>730</x>
       <y>580</y>
-      <width>241</width>
-      <height>61</height>
+      <width>180</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -136,6 +136,25 @@ color:red;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="backbtn">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>580</y>
+      <width>180</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <zorder>backbtn</zorder>
    <zorder>username_textbx</zorder>
    <zorder>label_2</zorder>
    <zorder>loginbtn</zorder>

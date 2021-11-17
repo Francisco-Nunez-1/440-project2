@@ -100,16 +100,16 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="logout_btn">
     <property name="geometry">
      <rect>
-      <x>1160</x>
-      <y>60</y>
-      <width>191</width>
-      <height>71</height>
+      <x>1110</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Logout</string>

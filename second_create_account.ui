@@ -93,32 +93,32 @@ color:rgb(255, 255, 255)</string>
     </property>
     <item>
      <property name="text">
+      <string>IT</string>
+     </property>
+    </item>
+    <item>
+    <property name="text">
       <string>Accounting</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Marketing</string>
+      <string>Engineering</string>
      </property>
     </item>
-    <item>
-     <property name="text">
-      <string>IT / Engineering</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>HR</string>
-     </property>
-    </item>
-    <item>
+     <item>
      <property name="text">
       <string>Finance</string>
      </property>
     </item>
-    <item>
+     <item>
      <property name="text">
-      <string>C-Suite</string>
+      <string>HR</string>
+     </property>
+    </item>
+     <item>
+     <property name="text">
+      <string>Marketing</string>
      </property>
     </item>
    </widget>
@@ -362,27 +362,22 @@ color:rgb(255, 255, 255)</string>
     </property>
     <item>
      <property name="text">
-      <string>Accountant</string>
+      <string>Developer I</string>
      </property>
     </item>
-    <item>
+       <item>
      <property name="text">
-      <string>Network Engineer</string>
+      <string>Developer II</string>
      </property>
     </item>
-    <item>
+       <item>
+     <property name="text">
+      <string>Developer III</string>
+     </property>
+    </item>
+   <item>
      <property name="text">
       <string>Database Administrator</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Information</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Security Specialist/Analyst</string>
      </property>
     </item>
     <item>
@@ -392,42 +387,22 @@ color:rgb(255, 255, 255)</string>
     </item>
     <item>
      <property name="text">
-      <string>Software Engineer</string>
+      <string>Network Engineer</string>
      </property>
     </item>
-    <item>
+     <item>
      <property name="text">
       <string>Quality Analyst</string>
      </property>
     </item>
-    <item>
+       <item>
      <property name="text">
-      <string>CEO</string>
+      <string>Security Analyst</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>CFO</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>COO</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>CIO</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>CTO</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>CISO</string>
+      <string>Software Engineer</string>
      </property>
     </item>
    </widget>
@@ -446,6 +421,24 @@ color:rgb(170, 0, 0);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+    <widget class="QPushButton" name="backbtn">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>800</y>
+      <width>180</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 20px;
+background-color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
     </property>
    </widget>
    <widget class="QProgressBar" name="progressBar">

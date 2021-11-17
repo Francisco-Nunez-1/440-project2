@@ -92,7 +92,7 @@ color:rgb(255, 255, 255);
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Logout</string>
