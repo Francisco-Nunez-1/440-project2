@@ -134,7 +134,7 @@ class LoginScreen(QDialog):
             widget.addWidget(mentor_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
         elif role == "Mentee":
-            mentee_login = MenteeLanding()
+            mentee_login = MenteeLanding(user)
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -147,40 +147,86 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
-
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
-        cursor.execute(query)
-
-        # mentee = str(cursor.fetchall())
+        # AOK1 AOK2 AOK3 from mentor
+        query1 = f"SELECT AOK1, AOK2, AOK3 FROM Employees WHERE Email = '{self.user}'"
+        cursor.execute(query1)
         for value in cursor.fetchall():
-            mentee_name = (str(value[0]), str(value[1]))
-            mentee_email = str(value[2])
+            aok1 = str(value[0])
+            aok2 = str(value[1])
+            aok3 = str(value[2])
 
-        print(mentee_name, mentee_email)
+        # query2 = f"SELECT FName, LName, Email FROM Employees WHERE AOK1 = '{aok1}' OR  AOK1 = '{aok2}'" \
+        #          f" OR AOK2 = '{aok1}' OR AOK1 = '{aok3}' OR AOK3 = '{aok1}' OR AOK2 = '{aok2}' OR AOK2 = '{aok3}'" \
+        #          f" OR AOK3 = '{aok2}' OR AOK3 = '{aok3}' AND AdvisingRole = 'Mentee'"
+        query2 = f"Select FName, LName, Email FROM Employees WHERE '{aok1}' IN(AOK1,AOK2,AOK3) " \
+                 f"AND '{aok2}' IN(AOK1,AOK2,AOK3) AND '{aok3}' IN(AOK1,AOK2,AOK3) AND AdvisingRole='Mentee'"
 
-        # connection = mysqlconnect()
-        # connection.cursor()
-        #
-        # connection.cursor.close()
-        # connection.close()
+        print(query2)
+        cursor.execute(query2)
+        print(cursor.fetchall())
+
+        for value in cursor.fetchall():
+            fname = str(value[0])
+            lname = str(value[1])
+            email = str(value[2])
+
+        self.mentee1_lbl.setText(fname + " " + lname)
+        self.mentee1_email_lbl.setText(email)
 
         self.logout_btn.clicked.connect(goto_login)
 
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
-    def __init__(self):
+    def __init__(self, user):
         super(MenteeLanding, self).__init__()
         loadUi("mentee_landing_pg.ui", self)
 
+        self.user = user
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        # AOK1 AOK2 AOK3 from mentor
+        query1 = f"SELECT AOK1, AOK2, AOK3 FROM Employees WHERE Email = '{self.user}'"
+        cursor.execute(query1)
+        for value in cursor.fetchall():
+            aok1 = str(value[0])
+            aok2 = str(value[1])
+            aok3 = str(value[2])
+
+        query2 = f"Select FName, LName, MBType, Bio FROM Employees WHERE '{aok1}' IN(AOK1,AOK2,AOK3) " \
+                 f"AND '{aok2}' IN(AOK1,AOK2,AOK3) AND '{aok3}' IN(AOK1,AOK2,AOK3) AND AdvisingRole='Mentor'"
+
+        cursor.execute(query2)
+        matches = cursor.fetchmany(size=2)
+        print(matches)
+        if matches:
+            if matches[0]:
+                self.mentor1_lbl.setText(matches[0][0] + " " + matches[0][1])
+                self.myers_briggs_1.setText(matches[0][2])
+                self.mentor1_bio_lbl.setText(matches[0][3])
+
+            if matches[1]:
+                self.mentor2_lbl.setText(matches[1][0] + " " + matches[1][1])
+                self.myers_briggs_2.setText(matches[1][2])
+                self.mentor2_bio_lbl.setText(matches[1][3])
+
+        # selected_mentor_name = self.selc_mentor_lbl.text()
+        # selected_mentor_bio = self.selc_mentor_bio_lbl.text()
+        # self.selc_delete_btn.clicked.connect()
+
+        self.add1_btn.clicked.connect(self.add_mentor_one)
+        # self.add2_btn.clicked.connect()
+
         self.logout_btn.clicked.connect(goto_login)
 
+    def add_mentor_one(self):
+        self.selc_mentor_lbl.setText(self.mentor1_lbl.text())
+        self.selc_mentor_bio_lbl.setText(self.mentor1_bio_lbl.text())
 
-# *********************************** END OF NEEDS WORK DONE TO IT **********************************************
-# ***************************************************************************************************************
 class CreateAccountScreen(QDialog):
 
     # def __init__(self, parent=None):
@@ -435,7 +481,7 @@ class MentorQuestionsPg1(QDialog):
             self.mvvm = ''
         # htmlCssJs_checkBox
         if self.htmlCssJs_checkBox.isChecked():
-            self.htmlCssJs = "html/Css/Js  "
+            self.htmlCssJs = "HTML/CSS/JS  "
             checkbox_list.append(self.htmlCssJs)
         else:
             self.htmlCssJs = ''
@@ -588,7 +634,6 @@ class MentorQuestionsPg2(QDialog):
         hobby2 = self.hobby2_textbx.text()
         hobby3 = self.hobby3_textbx.text()
 
-
     #
     #     # check fields arent blank and password matches before going to next page
     #     if len(ability_num) == 0 or len(hobby1) == 0 or len(hobby2) == 0 or len(hobby3) == 0 or len(bio) == 0:
@@ -733,7 +778,7 @@ class MenteeQuestionsPg1(QDialog):
             self.mvvm = ''
         # htmlCssJs_checkBox
         if self.htmlCssJs_checkBox.isChecked():
-            self.htmlCssJs = "html/Css/Js  "
+            self.htmlCssJs = "HTML/CSS/JS  "
             checkbox_list.append(self.htmlCssJs)
         else:
             self.htmlCssJs = ''
@@ -892,7 +937,6 @@ class MenteeQuestionsPg1(QDialog):
                     connection.close()
                     print("MySQL connection is closed")
                     goto_login()
-
 
     # go back to SecondAccountScreen
     def backpage_function(self):
