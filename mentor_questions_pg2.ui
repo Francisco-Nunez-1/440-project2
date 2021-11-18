@@ -211,7 +211,7 @@ background-color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Create Account</string>
+     <string>Create </string>
     </property>
    </widget>
    <widget class="QLabel" name="error_lbl">
