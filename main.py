@@ -179,7 +179,7 @@ class MentorLanding(QDialog):
             aok3 = str(value[2])
 
         # For Mentee1
-        query2 = f"Select FName, LName, Email FROM Employees WHERE '{aok1}' IN(AOK1,AOK2,AOK3) " \
+        query2 = f"Select FName, LName, MBType, JobPosition, Email FROM Employees WHERE '{aok1}' IN(AOK1,AOK2,AOK3) " \
                  f"AND '{aok2}' IN(AOK1,AOK2,AOK3) AND '{aok3}' IN(AOK1,AOK2,AOK3) AND AdvisingRole='Mentee'"
         print(query2)
         cursor.execute(query2)
@@ -190,28 +190,38 @@ class MentorLanding(QDialog):
             if matches:
                 if matches[0]:
                     self.mentee1_lbl.setText(matches[0][0] + " " + matches[0][1])
-                    self.mentee1_email_lbl.setText(matches[0][2])
+                    self.mentee1_mb_lbl.setText(matches[0][2])
+                    self.mentee1_job_lbl.setText(matches[0][3])
+                    self.mentee1_email_lbl.setText(matches[0][4])
 
                 if matches[1]:
                     self.mentee2_lbl.setText(matches[1][0] + " " + matches[1][1])
-                    self.mentee2_email_lbl.setText(matches[1][2])
+                    self.mentee2_mb_lbl.setText(matches[1][2])
+                    self.mentee2_job_lbl.setText(matches[1][3])
+                    self.mentee2_email_lbl.setText(matches[1][4])
 
                 if matches[2]:
                     self.mentee3_lbl.setText(matches[2][0] + " " + matches[2][1])
-                    self.mentee3_email_lbl.setText(matches[2][2])
+                    self.mentee3_mb_lbl.setText(matches[2][2])
+                    self.mentee3_job_lbl.setText(matches[2][3])
+                    self.mentee3_email_lbl.setText(matches[2][4])
 
                 if matches[3]:
                     self.mentee4_lbl.setText(matches[3][0] + " " + matches[3][1])
-                    self.mentee4_email_lbl.setText(matches[3][2])
+                    self.mentee4_mb_lbl.setText(matches[3][2])
+                    self.mentee4_job_lbl.setText(matches[3][3])
+                    self.mentee4_email_lbl.setText(matches[3][4])
 
                 if matches[4]:
                     self.mentee5_lbl.setText(matches[4][0] + " " + matches[4][1])
-                    self.mentee5_email_lbl.setText(matches[4][2])
+                    self.mentee5_mb_lbl.setText(matches[4][2])
+                    self.mentee5_job_lbl.setText(matches[4][3])
+                    self.mentee5_email_lbl.setText(matches[4][4])
             else:
                 # Maybe set all labels to blank to begin with
-                print('in else')
+                print("There are no matches.")
                 self.mentee1_lbl.setText("No matches are found")
-                self.mentee1_email_lbl.setText("")
+                # self.mentee1_email_lbl.setText("")
                 #
                 # self.mentee2_lbl.setText("")
                 # self.mentee2_email_lbl.setText("")
@@ -229,7 +239,7 @@ class MentorLanding(QDialog):
                 # self.mentee5_email_lbl.setText("")
         except IndexError:
             print("There are no matches.")
-            self.mentee1_lbl.setText("No matches are found")
+            # self.mentee1_lbl.setText("No matches are found")
             # self.mentee1_lbl.setText("")
             # self.mentee1_email_lbl.setText("")
             #
@@ -294,8 +304,24 @@ class MenteeLanding(QDialog):
                     self.mentor2_abscore_lbl.setText(str(matches[1][4]))
                     self.mentor2_email_lbl.setText(matches[1][5])
 
+            self.mentor1_email = matches[0][5]
+            self.mentor2_email = matches[1][5]
+
         except IndexError:
             print("Error Found")
+
+
+
+
+
+        self.info1_btn.clicked.connect(self.view_more1)
+        self.info2_btn.clicked.connect(self.view_more2)
+
+
+
+
+
+
 
         self.add1_btn.clicked.connect(self.add_mentor_one)
         self.add2_btn.clicked.connect(self.add_mentor_two)
@@ -303,31 +329,125 @@ class MenteeLanding(QDialog):
 
         self.logout_btn.clicked.connect(goto_login)
 
+
+
+
+
+
+    def view_more1(self):
+        additional_info_pg = FirstAdditionalInfo(self.user, self.mentor1_email)
+        widget.addWidget(additional_info_pg)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+    def view_more2(self):
+        additional_info_pg = SecondAdditionalInfo(self.user, self.mentor2_email)
+        widget.addWidget(additional_info_pg)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+
+
+
+
+
     def add_mentor_one(self):
         self.selc_mentor_name_lbl.setText(self.mentor1_name_lbl.text())
-        self.selc_job_lbl.setText(self.mentor1_job_lbl.text())
         self.selc_myers_lbl.setText(self.myers_briggs_1.text())
-        self.selc_abscore_lbl.setText('Teaching ability: ' + self.mentor1_abscore_lbl.text())
+        self.selc_job_lbl.setText(self.mentor1_job_lbl.text())
+        self.selc_abscore_lbl.setText(self.mentor1_abscore_lbl.text())
         self.selc_email_lbl.setText(self.mentor1_email_lbl.text())
 
     def add_mentor_two(self):
         self.selc_mentor_name_lbl.setText(self.mentor2_name_lbl.text())
-        self.selc_job_lbl.setText(self.mentor2_job_lbl.text())
         self.selc_myers_lbl.setText(self.myers_briggs_2.text())
-        self.selc_abscore_lbl.setText('Teaching ability: ' +self.mentor2_abscore_lbl.text())
+        self.selc_job_lbl.setText(self.mentor2_job_lbl.text())
+        self.selc_abscore_lbl.setText(self.mentor2_abscore_lbl.text())
         self.selc_email_lbl.setText(self.mentor2_email_lbl.text())
 
     def delete_mentor(self):
-        self.selc_mentor_name_lbl.setText("Selected Mentor Name")
-        self.selc_job_lbl.setText('Position')
-        self.selc_myers_lbl.setText('Myers-Briggs')
-        self.selc_abscore_lbl.setText('Teaching Ability')
-        self.selc_email_lbl.setText('Email')
+        self.selc_mentor_name_lbl.setText('')
+        self.selc_job_lbl.setText('')
+        self.selc_myers_lbl.setText('')
+        self.selc_abscore_lbl.setText('')
+        self.selc_email_lbl.setText('')
+
+
+
+
+
+
+
+class FirstAdditionalInfo(QDialog):
+    def __init__(self, user, mentor1):
+        super(FirstAdditionalInfo, self).__init__()
+        loadUi("view_mentor1_bio_pg.ui", self)
+
+        self.back_btn.clicked.connect(self.backpage_function)
+
+        self.user = user
+        self.mentor1 = mentor1
+
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor1}'"
+        cursor.execute(query)
+
+        info = cursor.fetchall()
+        for values in info:
+            self.view_YrsInIndustry_lbl.setText(str(values[0]))
+            self.view_YrsInComp_lbl.setText(str(values[1]))
+            self.view_hobby1_lbl.setText(values[2])
+            self.view_hobby2_lbl.setText(values[3])
+            self.view_hobby3_lbl.setText(values[4])
+            self.view_bio_lbl.setText(values[5])
+
+    def backpage_function(self):
+        mentee_landing = MenteeLanding(self.user)
+        widget.addWidget(mentee_landing)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+class SecondAdditionalInfo(QDialog):
+    def __init__(self, user, mentor2):
+        super(SecondAdditionalInfo, self).__init__()
+        loadUi("view_mentor2_bio_pg.ui", self)
+
+        self.back_btn.clicked.connect(self.backpage_function)
+
+        self.user = user
+        self.mentor2 = mentor2
+
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor2}'"
+        cursor.execute(query)
+
+        info = cursor.fetchall()
+        for values in info:
+            self.view_YrsInIndustry_lbl.setText(str(values[0]))
+            self.view_YrsInComp_lbl.setText(str(values[1]))
+            self.view_hobby1_lbl.setText(values[2])
+            self.view_hobby2_lbl.setText(values[3])
+            self.view_hobby3_lbl.setText(values[4])
+            self.view_bio_lbl.setText(values[5])
+
+    # go back to MenteeLanding pg
+    def backpage_function(self):
+        mentee_landing = MenteeLanding(self.user)
+        widget.addWidget(mentee_landing)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+
+
+
+
+
 
 
 class CreateAccountScreen(QDialog):
-
-
     def __init__(self):
         super(CreateAccountScreen, self).__init__()
         # load the gui to our python code
