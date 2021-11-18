@@ -80,10 +80,12 @@ class LoginScreen(QDialog):
         super(LoginScreen, self).__init__()
         # load the gui to our python code
         loadUi("login.ui", self)
+
         # This line will hide the password as its type in
         self.password_textbx.setEchoMode(QtWidgets.QLineEdit.Password)
         # connect to function to do next after login button is clicked
         self.loginbtn.clicked.connect(self.login_function)
+        self.backbtn.clicked.connect(self.backpage_function)
 
     def login_function(self):
         # extracting the user and password
@@ -104,6 +106,17 @@ class LoginScreen(QDialog):
             # this execute the query's
             # cur = conn.cursor()
             # query = 'SELECT password_COLUMN_HERE FROM TABLE_NAME_HERE WHERE username_COLUMN_NAME =\'' + typed_user + "\'"
+
+
+
+            # Check validity of the username
+            # query = 'SELECT Email FROM Employees WHERE Email =\'' + typed_user + "\'"
+            # cursor.execute(query)
+            #
+            # result_username = str(cursor.fetchone()[0])
+            # print(result_username)
+
+
             query = 'SELECT Password FROM Employees WHERE Email =\'' + typed_user + "\'"
             cursor.execute(query)
 
@@ -111,7 +124,9 @@ class LoginScreen(QDialog):
             # with what they typed in
             # result_password = cursor.fetchone()
             result_password = str(cursor.fetchone()[0])
+            print(result_password)
 
+            # if result_username == typed_user and result_password == typed_password:
             if result_password == typed_password:
                 print("Successfully logged in")
                 self.error_lbl.setText("")
@@ -121,11 +136,16 @@ class LoginScreen(QDialog):
                 print(result_role)
                 self.path(result_role, typed_user)
             else:
-                # tried to be funny
-                self.error_lbl.setText("Invalid Username or Password \nor Both go figure it out!!!!")
+                self.error_lbl.setText("Invalid Username or Password")
 
             cursor.close()
             connection.close()
+
+    # go back to the login page
+    def backpage_function(self):
+        welcome_pg = WelcomeScreen()
+        widget.addWidget(welcome_pg)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
     # Loads the corresponding landing page depending on the advising role of the user
     def path(self, role, user):
@@ -134,7 +154,7 @@ class LoginScreen(QDialog):
             widget.addWidget(mentor_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
         elif role == "Mentee":
-            mentee_login = MenteeLanding()
+            mentee_login = MenteeLanding(user)
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -166,28 +186,93 @@ class MentorLanding(QDialog):
         print(query2)
         cursor.execute(query2)
 
-        # Prints the first name, last name, and email of the mentees that matches with the mentor
-        value = cursor.fetchall()
-        if value[0]:
-            fname = value[0][0]
-            lname = value[0][1]
-            email = value[0][2]
-        self.mentee1_lbl.setText(fname + " " + lname)
-        self.mentee1_email_lbl.setText(email)
+        matches = cursor.fetchmany(size=5)
+        print(matches)
+        try:
+            if matches:
+                if matches[0]:
+                    self.mentee1_lbl.setText(matches[0][0] + " " + matches[0][1])
+                    self.mentee1_email_lbl.setText(matches[0][2])
 
-        if value[1]:
-            fname2 = value[1][0]
-            lname2 = value[1][1]
-            email2 = value[1][2]
-            self.mentee2_lbl.setText(fname2 + " " + lname2)
-            self.mentee2_email_lbl.setText(email2)
+                if matches[1]:
+                    self.mentee2_lbl.setText(matches[1][0] + " " + matches[1][1])
+                    self.mentee2_email_lbl.setText(matches[1][2])
 
-        if value[2]:
-            fname3 = value[2][0]
-            lname3 = value[2][1]
-            email3 = value[2][2]
-            self.mentee3_lbl.setText(fname3 + " " + lname3)
-            self.mentee3_email_lbl.setText(email3)
+                if matches[2]:
+                    self.mentee3_lbl.setText(matches[2][0] + " " + matches[2][1])
+                    self.mentee3_email_lbl.setText(matches[2][2])
+
+                if matches[3]:
+                    self.mentee4_lbl.setText(matches[3][0] + " " + matches[3][1])
+                    self.mentee4_email_lbl.setText(matches[3][2])
+
+                if matches[4]:
+                    self.mentee5_lbl.setText(matches[4][0] + " " + matches[4][1])
+                    self.mentee5_email_lbl.setText(matches[4][2])
+            else:
+                # Maybe set all labels to blank to begin with
+                self.mentee1_lbl.setText("No matches are found")
+                self.mentee1_email_lbl.setText("")
+                #
+                # self.mentee2_lbl.setText("")
+                # self.mentee2_email_lbl.setText("")
+                #
+                # self.mentee3_lbl.setText("")
+                # self.mentee3_email_lbl.setText("")
+                #
+                # self.mentee3_lbl.setText("")
+                # self.mentee3_email_lbl.setText("")
+                #
+                # self.mentee4_lbl.setText("")
+                # self.mentee4_email_lbl.setText("")
+                #
+                # self.mentee5_lbl.setText("")
+                # self.mentee5_email_lbl.setText("")
+        except IndexError:
+            print("There are no matches.")
+            self.mentee1_lbl.setText("No matches are found")
+            # self.mentee1_lbl.setText("")
+            # self.mentee1_email_lbl.setText("")
+            #
+            # self.mentee2_lbl.setText("")
+            # self.mentee2_email_lbl.setText("")
+            #
+            # self.mentee3_lbl.setText("")
+            # self.mentee3_email_lbl.setText("")
+            #
+            # self.mentee3_lbl.setText("")
+            # self.mentee3_email_lbl.setText("")
+            #
+            # self.mentee4_lbl.setText("")
+            # self.mentee4_email_lbl.setText("")
+            #
+            # self.mentee5_lbl.setText("")
+            # self.mentee5_email_lbl.setText("")
+
+        self.logout_btn.clicked.connect(goto_login)
+
+        # # Prints the first name, last name, and email of the mentees that matches with the mentor
+        # value = cursor.fetchall()
+        # if value[0]:
+        #     fname = value[0][0]
+        #     lname = value[0][1]
+        #     email = value[0][2]
+        #     self.mentee1_lbl.setText(fname + " " + lname)
+        #     self.mentee1_email_lbl.setText(email)
+        #
+        # if value[1]:
+        #     fname2 = value[1][0]
+        #     lname2 = value[1][1]
+        #     email2 = value[1][2]
+        #     self.mentee2_lbl.setText(fname2 + " " + lname2)
+        #     self.mentee2_email_lbl.setText(email2)
+        #
+        # if value[2]:
+        #     fname3 = value[2][0]
+        #     lname3 = value[2][1]
+        #     email3 = value[2][2]
+        #     self.mentee3_lbl.setText(fname3 + " " + lname3)
+        #     self.mentee3_email_lbl.setText(email3)
 
         # if len(value[3]) > 0:
         #     fname4 = value[3][0]
@@ -206,15 +291,72 @@ class MentorLanding(QDialog):
         # connection.cursor.close()
         # connection.close()
 
-        self.logout_btn.clicked.connect(goto_login)
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
-    def __init__(self):
+    def __init__(self, user):
         super(MenteeLanding, self).__init__()
         loadUi("mentee_landing_pg.ui", self)
 
+        self.user = user
+        connection = mysqlconnect()
+        cursor = connection.cursor()
+
+        # AOK1 AOK2 AOK3 from mentor
+        query1 = f"SELECT AOK1, AOK2, AOK3 FROM Employees WHERE Email = '{self.user}'"
+        cursor.execute(query1)
+        for value in cursor.fetchall():
+            aok1 = str(value[0])
+            aok2 = str(value[1])
+            aok3 = str(value[2])
+
+        query2 = f"Select FName, LName, MBType, JobPosition, AbScore, Email FROM Employees " \
+                 f"WHERE '{aok1}' IN(AOK1,AOK2,AOK3) AND " \
+                 f"'{aok2}' IN(AOK1,AOK2,AOK3) AND " \
+                 f"'{aok3}' IN(AOK1,AOK2,AOK3) AND " \
+                 f"AdvisingRole='Mentor'"
+        cursor.execute(query2)
+
+        matches = cursor.fetchmany(size=2)
+        print(matches)
+        try:
+            if matches:
+                if matches[0]:
+                    self.mentor1_name_lbl.setText(matches[0][0] + " " + matches[0][1])
+                    self.myers_briggs_1.setText(matches[0][2])
+                    self.mentor1_job_lbl.setText(matches[0][3])
+                    self.mentor1_abscore_lbl.setText(str(matches[0][4]))
+                    self.mentor1_email_lbl.setText(matches[0][5])
+
+                    # Need to add
+                    # name(first and last), myers briggs, job position, ability score, email
+
+                if matches[1]:
+                    self.mentor2_name_lbl.setText(matches[1][0] + " " + matches[1][1])
+                    self.myers_briggs_2.setText(matches[1][2])
+                    self.mentor2_job_lbl.setText(matches[1][3])
+                    self.mentor2_abscore_lbl.setText(str(matches[1][4]))
+                    self.mentor2_email_lbl.setText(matches[1][5])
+
+        except IndexError:
+            print("Error Found")
+
+        self.add1_btn.clicked.connect(self.add_mentor_one)
+        self.add2_btn.clicked.connect(self.add_mentor_two)
+        self.selc_delete_btn.clicked.connect(self.delete_mentor)
+
         self.logout_btn.clicked.connect(goto_login)
+
+    def add_mentor_one(self):
+        self.selc_mentor_lbl.setText(self.mentor1_name_lbl.text())
+        # self.selc_mentor_bio_lbl.setText(self.mentor1_bio_lbl.text())
+
+    def add_mentor_two(self):
+        self.selc_mentor_lbl.setText(self.mentor2_name_lbl.text())
+        # self.selc_mentor_bio_lbl.setText(self.mentor1_bio_lbl.text())
+
+    def delete_mentor(self):
+        self.selc_mentor_lbl.setText("Selected Mentor Name")
 
 
 # *********************************** END OF NEEDS WORK DONE TO IT **********************************************
@@ -234,6 +376,9 @@ class CreateAccountScreen(QDialog):
 
         # when next button is clicked it will go to nextpage_funtion
         self.nextbtn.clicked.connect(self.nextpage_function)
+
+        # when the back button is clicked it will go back to the LoginScreen
+        self.backbtn.clicked.connect(self.backpage_function)
 
     def nextpage_function(self):
         # Get user input from create_account_both.ui
@@ -259,9 +404,11 @@ class CreateAccountScreen(QDialog):
             widget.addWidget(second_page_create_account)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
-        # second_page_create_account = SecondCreateAccountScreen(userDataPage1)
-        # widget.addWidget(second_page_create_account)
-        # widget.setCurrentIndex(widget.currentIndex() + 1)
+    # go back to the welcome screen
+    def backpage_function(self):
+        welcome_pg = WelcomeScreen()
+        widget.addWidget(welcome_pg)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 # this is for link
@@ -291,6 +438,13 @@ class SecondCreateAccountScreen(QDialog):
         self.linklbl.setText(linkTemplate.format('URL', 'Description'))
 
         self.nextbtn.clicked.connect(self.save_pg1)
+        self.backbtn.clicked.connect(self.backpage_function)
+
+    # go back to the first CreateAccountScreen
+    def backpage_function(self):
+        create_account_pg = CreateAccountScreen()
+        widget.addWidget(create_account_pg)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def save_pg1(self):
         # try:
@@ -473,7 +627,7 @@ class MentorQuestionsPg1(QDialog):
             self.mvvm = ''
         # htmlCssJs_checkBox
         if self.htmlCssJs_checkBox.isChecked():
-            self.htmlCssJs = "html/Css/Js  "
+            self.htmlCssJs = "HTML/CSS/JS "
             checkbox_list.append(self.htmlCssJs)
         else:
             self.htmlCssJs = ''
