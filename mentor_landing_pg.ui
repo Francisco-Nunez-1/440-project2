@@ -76,7 +76,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentee 1</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentee2_lbl">
@@ -94,7 +94,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentee 2</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="logout_btn">
@@ -115,60 +115,6 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Logout</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentee1_email_lbl">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>210</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Email 1</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentee2_email_lbl">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>300</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Email 2</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentee3_email_lbl">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>390</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Email 3</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="mentee3_lbl">
     <property name="geometry">
      <rect>
@@ -184,25 +130,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentee 3</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentee4_email_lbl">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>480</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Email 4</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentee4_lbl">
@@ -220,7 +148,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentee 4</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentee5_lbl">
@@ -238,25 +166,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentee 5</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="mentee5_email_lbl">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>570</y>
-      <width>291</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="text">
-     <string>Email 5</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentor_name_lbl">

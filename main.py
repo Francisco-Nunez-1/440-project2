@@ -121,8 +121,7 @@ class LoginScreen(QDialog):
                 print(result_role)
                 self.path(result_role, typed_user)
             else:
-                # tried to be funny
-                self.error_lbl.setText("Invalid Username or Password \nor Both go figure it out!!!!")
+                self.error_lbl.setText("Invalid Username or Password")
 
             cursor.close()
             connection.close()
@@ -147,6 +146,7 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
+        # diplay user in gui lbl
         connection = mysqlconnect()
         cursor = connection.cursor()
 
@@ -207,6 +207,7 @@ class MentorLanding(QDialog):
         # connection.close()
 
         self.logout_btn.clicked.connect(goto_login)
+
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
@@ -896,8 +897,6 @@ class MenteeQuestionsPg1(QDialog):
             self.userData.update({"AOK2": checkbox_list[1]})
             self.userData.update({"AOK3": checkbox_list[2]})
             self.createAccountbtn.clicked.connect(self.connectdatabase)
-
-
 
         return checkbox_list
 
