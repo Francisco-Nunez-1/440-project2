@@ -159,8 +159,6 @@ class MentorLanding(QDialog):
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        # query = 'SELECT FName, LName, Email FROM Employees WHERE Email =\'' + self.user + "\'"
-
         # AOK1 AOK2 AOK3 from mentor
         query1 = f"SELECT AOK1, AOK2, AOK3 FROM Employees WHERE Email = '{self.user}'"
         cursor.execute(query1)
@@ -200,6 +198,7 @@ class MentorLanding(QDialog):
                     self.mentee5_email_lbl.setText(matches[4][2])
             else:
                 # Maybe set all labels to blank to begin with
+                print('in else')
                 self.mentee1_lbl.setText("No matches are found")
                 self.mentee1_email_lbl.setText("")
                 #
@@ -240,46 +239,6 @@ class MentorLanding(QDialog):
 
         self.logout_btn.clicked.connect(goto_login)
 
-        # # Prints the first name, last name, and email of the mentees that matches with the mentor
-        # value = cursor.fetchall()
-        # if value[0]:
-        #     fname = value[0][0]
-        #     lname = value[0][1]
-        #     email = value[0][2]
-        #     self.mentee1_lbl.setText(fname + " " + lname)
-        #     self.mentee1_email_lbl.setText(email)
-        #
-        # if value[1]:
-        #     fname2 = value[1][0]
-        #     lname2 = value[1][1]
-        #     email2 = value[1][2]
-        #     self.mentee2_lbl.setText(fname2 + " " + lname2)
-        #     self.mentee2_email_lbl.setText(email2)
-        #
-        # if value[2]:
-        #     fname3 = value[2][0]
-        #     lname3 = value[2][1]
-        #     email3 = value[2][2]
-        #     self.mentee3_lbl.setText(fname3 + " " + lname3)
-        #     self.mentee3_email_lbl.setText(email3)
-
-        # if len(value[3]) > 0:
-        #     fname4 = value[3][0]
-        #     lname4 = value[3][1]
-        #     email4 = value[3][2]
-        #     self.mentee4_lbl.setText(fname4 + " " + lname4)
-        #     self.mentee4_email_lbl.setText(email4)
-        #
-        # if len(value[4]) > 0:
-        #     fname5 = value[4][0]
-        #     lname5 = value[4][1]
-        #     email5 = value[4][2]
-        #     self.mentee5_lbl.setText(fname5 + " " + lname5)
-        #     self.mentee5_email_lbl.setText(email5)
-
-        # connection.cursor.close()
-        # connection.close()
-
 
 # Displays the mentee matches to the mentor
 class MenteeLanding(QDialog):
@@ -317,9 +276,6 @@ class MenteeLanding(QDialog):
                     self.mentor1_abscore_lbl.setText(str(matches[0][4]))
                     self.mentor1_email_lbl.setText(matches[0][5])
 
-                    # Need to add
-                    # name(first and last), myers briggs, job position, ability score, email
-
                 if matches[1]:
                     self.mentor2_name_lbl.setText(matches[1][0] + " " + matches[1][1])
                     self.myers_briggs_2.setText(matches[1][2])
@@ -337,22 +293,29 @@ class MenteeLanding(QDialog):
         self.logout_btn.clicked.connect(goto_login)
 
     def add_mentor_one(self):
-        self.selc_mentor_lbl.setText(self.mentor1_name_lbl.text())
-        # self.selc_mentor_bio_lbl.setText(self.mentor1_bio_lbl.text())
+        self.selc_mentor_name_lbl.setText(self.mentor1_name_lbl.text())
+        self.selc_job_lbl.setText(self.mentor1_job_lbl.text())
+        self.selc_myers_lbl.setText(self.myers_briggs_1.text())
+        self.selc_abscore_lbl.setText('Teaching ability: ' + self.mentor1_abscore_lbl.text())
+        self.selc_email_lbl.setText(self.mentor1_email_lbl.text())
 
     def add_mentor_two(self):
-        self.selc_mentor_lbl.setText(self.mentor2_name_lbl.text())
-        # self.selc_mentor_bio_lbl.setText(self.mentor1_bio_lbl.text())
+        self.selc_mentor_name_lbl.setText(self.mentor2_name_lbl.text())
+        self.selc_job_lbl.setText(self.mentor2_job_lbl.text())
+        self.selc_myers_lbl.setText(self.myers_briggs_2.text())
+        self.selc_abscore_lbl.setText('Teaching ability: ' +self.mentor2_abscore_lbl.text())
+        self.selc_email_lbl.setText(self.mentor2_email_lbl.text())
 
     def delete_mentor(self):
-        self.selc_mentor_lbl.setText("Selected Mentor Name")
+        self.selc_mentor_name_lbl.setText("Selected Mentor Name")
+        self.selc_job_lbl.setText('Position')
+        self.selc_myers_lbl.setText('Myers-Briggs')
+        self.selc_abscore_lbl.setText('Teaching Ability')
+        self.selc_email_lbl.setText('Email')
 
 
-# *********************************** END OF NEEDS WORK DONE TO IT **********************************************
-# ***************************************************************************************************************
 class CreateAccountScreen(QDialog):
 
-    # def __init__(self, parent=None):
 
     def __init__(self):
         super(CreateAccountScreen, self).__init__()
@@ -592,73 +555,73 @@ class MentorQuestionsPg1(QDialog):
 
         # programming
         if self.programming_checkBox.isChecked():
-            self.programming = "Programming  "
+            self.programming = "Programming"
             checkbox_list.append(self.programming)
         else:
             self.programming = ''
         # SQL
         if self.sql_checkBox.isChecked():
-            self.SQL = "SQL  "
+            self.SQL = "SQL"
             checkbox_list.append(self.SQL)
         else:
             self.SQL = ''
         # databaseAdmin
         if self.databaseAdmin_checkBox.isChecked():
-            self.databaseAdmin = "Database Admin  "
+            self.databaseAdmin = "Database Admin"
             checkbox_list.append(self.databaseAdmin)
         else:
             self.databaseAdmin = ''
         # mvvm_checkBox
         if self.mvvm_checkBox.isChecked():
-            self.mvvm = "MVVM  "
+            self.mvvm = "MVVM"
             checkbox_list.append(self.mvvm)
         else:
             self.mvvm = ''
         # htmlCssJs_checkBox
         if self.htmlCssJs_checkBox.isChecked():
-            self.htmlCssJs = "HTML/CSS/JS "
+            self.htmlCssJs = "HTML/CSS/JS"
             checkbox_list.append(self.htmlCssJs)
         else:
             self.htmlCssJs = ''
         # networkAdmin_checkBox
         if self.networkAdmin_checkBox.isChecked():
-            self.networkAdmin = "Network Admin  "
+            self.networkAdmin = "Network Admin"
             checkbox_list.append(self.networkAdmin)
         else:
             self.networkAdmin = ''
         # databaseManger_checkBox
         if self.databaseManger_checkBox.isChecked():
-            self.databaseManger = "Database Manger  "
+            self.databaseManger = "Database Manager"
             checkbox_list.append(self.databaseManger)
         else:
             self.databaseManger = ''
         # git_checkBox
         if self.git_checkBox.isChecked():
-            self.git = "Git  "
+            self.git = "Git"
             checkbox_list.append(self.git)
         else:
             self.git = ''
         # cSharpNet_checkBox ********************************************
         if self.cSharpNet_checkBox.isChecked():
-            self.cSharpNet = "C#/Net  "
+            self.cSharpNet = "C#/.NET"
             checkbox_list.append(self.cSharpNet)
         else:
             self.cSharpNet = ''
         # qualityAssurance_checkBox
         if self.qualityAssurance_checkBox.isChecked():
-            self.qualityAssurance = "Quality Assurance  "
+            self.qualityAssurance = "Quality Assurance"
             checkbox_list.append(self.qualityAssurance)
         else:
             self.qualityAssurance = ''
         # databaseQuerying_checkBox
         if self.databaseQuerying_checkBox.isChecked():
-            self.databaseQuerying = "Database Querying  "
+            self.databaseQuerying = "Database Querying"
             checkbox_list.append(self.databaseQuerying)
         else:
             self.databaseQuerying = ''
         # azure_checkBox
         if self.azure_checkBox.isChecked():
-            self.azure = "Azure  "
+            self.azure = "Azure"
             checkbox_list.append(self.azure)
         else:
             self.azure = ''
@@ -670,43 +633,43 @@ class MentorQuestionsPg1(QDialog):
             self.c = ''
         # automatedTesting_checkBox
         if self.automatedTesting_checkBox.isChecked():
-            self.automatedTesting = "Automated Testing  "
+            self.automatedTesting = "Automated Testing"
             checkbox_list.append(self.automatedTesting)
         else:
             self.automatedTesting = ''
         # reactJs_checkBox
         if self.reactJs_checkBox.isChecked():
-            self.reactJs = "ReactJs  "
+            self.reactJs = "ReactJS"
             checkbox_list.append(self.reactJs)
         else:
             self.reactJs = ''
         # ios_checkBox
         if self.ios_checkBox.isChecked():
-            self.ios = "IOS  "
+            self.ios = "IOS"
             checkbox_list.append(self.ios)
         else:
             self.ios = ''
         # swift_checkBox # **************************************
         if self.swift_checkBox.isChecked():
-            self.swift = "Swift  "
+            self.swift = "Swift"
             checkbox_list.append(self.swift)
         else:
             self.swift = ''
         # cloudAdmin_checkBox
         if self.cloudAdmin_checkBox.isChecked():
-            self.cloudAdmin = "Cloud Admin  "
+            self.cloudAdmin = "Cloud Admin"
             checkbox_list.append(self.cloudAdmin)
         else:
             self.cloudAdmin = ''
         # wpf_checkBox
         if self.wpf_checkBox.isChecked():
-            self.wpf = "WPF  "
+            self.wpf = "WPF"
             checkbox_list.append(self.wpf)
         else:
             self.wpf = ''
         # androidDev_checkBox
         if self.androidDev_checkBox.isChecked():
-            self.androidDev = "Android Dev.  "
+            self.androidDev = "Android Dev."
             checkbox_list.append(self.androidDev)
         else:
             self.androidDev = ''
@@ -717,11 +680,11 @@ class MentorQuestionsPg1(QDialog):
 
         if num_in_list < 4:
             # Display the names of the check boxes that were checked on to the GUI
-            self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
-                                                  f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
-                                                  f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}{self.azure}'
-                                                  f'{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
-                                                  f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
+            self.specialties_strengthslbl.setText(f' {self.programming} {self.SQL} {self.databaseAdmin} {self.mvvm}'
+                                                  f' {self.htmlCssJs} {self.networkAdmin} {self.databaseManger} {self.git}'
+                                                  f' {self.cSharpNet} {self.qualityAssurance} {self.databaseQuerying} {self.azure}'
+                                                  f' {self.c} {self.automatedTesting} {self.reactJs} {self.ios}'
+                                                  f' {self.swift} {self.cloudAdmin} {self.wpf} {self.androidDev}')
 
         # check fields arent blank and password matches before going to next page
         if num_in_list > 3:
@@ -790,7 +753,7 @@ class MentorQuestionsPg2(QDialog):
     def connectdatabase(self):
         try:
             connection = mysqlconnect()
-
+            self.createAccountbtn.setEnabled(False)
             if connection.is_connected():
                 db_info = connection.get_server_info()
                 print("Connected to MySQL Server version ", db_info)
@@ -818,6 +781,7 @@ class MentorQuestionsPg2(QDialog):
 
         except Exception as e:
             print("Error while connecting to MySQL", e)
+            self.createAccountbtn.clicked.connect(self.connectdatabase)
 
         finally:
             if connection.is_connected():
@@ -899,122 +863,122 @@ class MenteeQuestionsPg1(QDialog):
 
         # programming
         if self.programming_checkBox.isChecked():
-            self.programming = "Programming  "
+            self.programming = "Programming"
             checkbox_list.append(self.programming)
         else:
             self.programming = ''
         # SQL
         if self.sql_checkBox.isChecked():
-            self.SQL = "SQL  "
+            self.SQL = "SQL"
             checkbox_list.append(self.SQL)
         else:
             self.SQL = ''
         # databaseAdmin
         if self.databaseAdmin_checkBox.isChecked():
-            self.databaseAdmin = "Database Admin  "
+            self.databaseAdmin = "Database Admin"
             checkbox_list.append(self.databaseAdmin)
         else:
             self.databaseAdmin = ''
         # mvvm_checkBox
         if self.mvvm_checkBox.isChecked():
-            self.mvvm = "MVVM  "
+            self.mvvm = "MVVM"
             checkbox_list.append(self.mvvm)
         else:
             self.mvvm = ''
         # htmlCssJs_checkBox
         if self.htmlCssJs_checkBox.isChecked():
-            self.htmlCssJs = "html/Css/Js  "
+            self.htmlCssJs = "HTML/CSS/JS"
             checkbox_list.append(self.htmlCssJs)
         else:
             self.htmlCssJs = ''
         # networkAdmin_checkBox
         if self.networkAdmin_checkBox.isChecked():
-            self.networkAdmin = "Network Admin  "
+            self.networkAdmin = "Network Admin"
             checkbox_list.append(self.networkAdmin)
         else:
             self.networkAdmin = ''
         # databaseManger_checkBox
         if self.databaseManger_checkBox.isChecked():
-            self.databaseManger = "Database Manger  "
+            self.databaseManger = "Database Manager"
             checkbox_list.append(self.databaseManger)
         else:
             self.databaseManger = ''
         # git_checkBox
         if self.git_checkBox.isChecked():
-            self.git = "Git  "
+            self.git = "Git"
             checkbox_list.append(self.git)
         else:
             self.git = ''
         # cSharpNet_checkBox ********************************************
         if self.cSharpNet_checkBox.isChecked():
-            self.cSharpNet = "C#/Net  "
+            self.cSharpNet = "C#/.NET"
             checkbox_list.append(self.cSharpNet)
         else:
             self.cSharpNet = ''
         # qualityAssurance_checkBox
         if self.qualityAssurance_checkBox.isChecked():
-            self.qualityAssurance = "Quality Assurance  "
+            self.qualityAssurance = "Quality Assurance"
             checkbox_list.append(self.qualityAssurance)
         else:
             self.qualityAssurance = ''
         # databaseQuerying_checkBox
         if self.databaseQuerying_checkBox.isChecked():
-            self.databaseQuerying = "Database Querying  "
+            self.databaseQuerying = "Database Querying"
             checkbox_list.append(self.databaseQuerying)
         else:
             self.databaseQuerying = ''
         # azure_checkBox
         if self.azure_checkBox.isChecked():
-            self.azure = "Azure  "
+            self.azure = "Azure"
             checkbox_list.append(self.azure)
         else:
             self.azure = ''
         # c_checkBox # ****************************************
         if self.c_checkBox.isChecked():
-            self.c = "C  "
+            self.c = "C"
             checkbox_list.append(self.c)
         else:
             self.c = ''
         # automatedTesting_checkBox
         if self.automatedTesting_checkBox.isChecked():
-            self.automatedTesting = "Automated Testing  "
+            self.automatedTesting = "Automated Testing"
             checkbox_list.append(self.automatedTesting)
         else:
             self.automatedTesting = ''
         # reactJs_checkBox
         if self.reactJs_checkBox.isChecked():
-            self.reactJs = "ReactJs  "
+            self.reactJs = "ReactJS"
             checkbox_list.append(self.reactJs)
         else:
             self.reactJs = ''
         # ios_checkBox
         if self.ios_checkBox.isChecked():
-            self.ios = "IOS  "
+            self.ios = "iOS"
             checkbox_list.append(self.ios)
         else:
             self.ios = ''
 
         # swift_checkBox # **************************************
         if self.swift_checkBox.isChecked():
-            self.swift = "Swift  "
+            self.swift = "Swift"
             checkbox_list.append(self.swift)
         else:
             self.swift = ''
         # cloudAdmin_checkBox
         if self.cloudAdmin_checkBox.isChecked():
-            self.cloudAdmin = "Cloud Admin  "
+            self.cloudAdmin = "Cloud Admin"
             checkbox_list.append(self.cloudAdmin)
         else:
             self.cloudAdmin = ''
         # wpf_checkBox
         if self.wpf_checkBox.isChecked():
-            self.wpf = "WPF  "
+            self.wpf = "WPF"
             checkbox_list.append(self.wpf)
         else:
             self.wpf = ''
         # androidDev_checkBox
         if self.androidDev_checkBox.isChecked():
-            self.androidDev = "Android Dev.  "
+            self.androidDev = "Android Dev."
             checkbox_list.append(self.androidDev)
         else:
             self.androidDev = ''
@@ -1026,11 +990,11 @@ class MenteeQuestionsPg1(QDialog):
 
         # Display the names of the check boxes that were checked on to the GUI
         if num_in_list < 4:
-            self.specialties_strengthslbl.setText(f'{self.programming}{self.SQL}{self.databaseAdmin}{self.mvvm}'
-                                                  f'{self.htmlCssJs}{self.networkAdmin}{self.databaseManger}{self.git}'
-                                                  f'{self.cSharpNet}{self.qualityAssurance}{self.databaseQuerying}'
-                                                  f'{self.azure}{self.c}{self.automatedTesting}{self.reactJs}{self.ios}'
-                                                  f'{self.swift}{self.cloudAdmin}{self.wpf}{self.androidDev}')
+            self.specialties_strengthslbl.setText(f' {self.programming} {self.SQL} {self.databaseAdmin} {self.mvvm}'
+                                                  f' {self.htmlCssJs} {self.networkAdmin} {self.databaseManger} {self.git}'
+                                                  f' {self.cSharpNet} {self.qualityAssurance} {self.databaseQuerying} {self.azure}'
+                                                  f' {self.c} {self.automatedTesting} {self.reactJs} {self.ios}'
+                                                  f' {self.swift} {self.cloudAdmin} {self.wpf} {self.androidDev}')
 
         if num_in_list > 3:
             self.error_lbl.setText("Must choose 3.")
@@ -1044,8 +1008,12 @@ class MenteeQuestionsPg1(QDialog):
 
     def connectdatabase(self):
         print('connecting')
+
         strengths_list = self.checked_checkbox()
+
         if len(strengths_list) == 3:
+            self.createAccountbtn.setEnabled(False)
+
             try:
                 connection = mysqlconnect()
 
@@ -1073,6 +1041,7 @@ class MenteeQuestionsPg1(QDialog):
 
             except Exception as e:
                 print("Error while connecting to MySQL", e)
+                self.createAccountbtn.clicked.connect(self.connectdatabase)
 
             finally:
                 if connection.is_connected():
@@ -1098,6 +1067,7 @@ widget = QStackedWidget()
 widget.addWidget(welcome)
 widget.setFixedHeight(900)
 widget.setFixedWidth(1400)
+widget.setWindowTitle('COBOLT')
 widget.show()
 try:
     sys.exit(app.exec_())
