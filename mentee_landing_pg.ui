@@ -209,7 +209,7 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="add1_btn">
     <property name="geometry">
      <rect>
-      <x>1110</x>
+      <x>1050</x>
       <y>520</y>
       <width>161</width>
       <height>41</height>
@@ -227,7 +227,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="add2_btn">
     <property name="geometry">
      <rect>
-      <x>1110</x>
+      <x>1050</x>
       <y>590</y>
       <width>161</width>
       <height>41</height>
@@ -637,7 +637,7 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="info2_btn">
     <property name="geometry">
      <rect>
-      <x>1280</x>
+      <x>1220</x>
       <y>590</y>
       <width>161</width>
       <height>41</height>
@@ -655,7 +655,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="info1_btn">
     <property name="geometry">
      <rect>
-      <x>1280</x>
+      <x>1220</x>
       <y>520</y>
       <width>161</width>
       <height>41</height>
