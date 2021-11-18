@@ -1,16 +1,8 @@
 # TO DO
-# Done - functionality for back button
-# mentor page 1 fix if else on the checkboxes, currently it goes to next page if more than 3
-# Create Account Button in second_create_account needs to be changed to Next
-# Next Button in Mentor_questions_pg1 needs to be changed to create account
-# Next Button in Mentor_questions_pg2 needs to be changed to create account
-# Disable the check boxes and the next button unless only 3 check boxes are checked
-# Try to call the mentee checkboxes to the already established function in mentor page 1
 # Pulling from data base to log in into login landing page
 # Matching algorithm
 # Pull and display info in login landing page
-# check if class mentore page 2 questions checks that fields are field before continuing and call the spinbox
-# check if class mente questions checks that checkboxes are only 3 before continuing
+
 
 # # Imports to run Qt5
 import sys
@@ -107,15 +99,12 @@ class LoginScreen(QDialog):
             # cur = conn.cursor()
             # query = 'SELECT password_COLUMN_HERE FROM TABLE_NAME_HERE WHERE username_COLUMN_NAME =\'' + typed_user + "\'"
 
-
-
             # Check validity of the username
             # query = 'SELECT Email FROM Employees WHERE Email =\'' + typed_user + "\'"
             # cursor.execute(query)
             #
             # result_username = str(cursor.fetchone()[0])
             # print(result_username)
-
 
             query = 'SELECT Password FROM Employees WHERE Email =\'' + typed_user + "\'"
             cursor.execute(query)
@@ -167,7 +156,6 @@ class MentorLanding(QDialog):
         loadUi("mentor_landing_pg.ui", self)
 
         self.user = user
-        # diplay user in gui lbl
         connection = mysqlconnect()
         cursor = connection.cursor()
 
@@ -291,7 +279,6 @@ class MentorLanding(QDialog):
 
         # connection.cursor.close()
         # connection.close()
-
 
 
 # Displays the mentee matches to the mentor
