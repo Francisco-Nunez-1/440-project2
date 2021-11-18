@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1443</width>
-    <height>931</height>
+    <width>1439</width>
+    <height>922</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>220</y>
+      <y>260</y>
       <width>481</width>
       <height>81</height>
      </rect>
@@ -59,7 +59,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected Mentor Name</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentor_results_lbl">
@@ -101,8 +101,8 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="selc_job_lbl">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>220</y>
+      <x>430</x>
+      <y>260</y>
       <width>291</width>
       <height>81</height>
      </rect>
@@ -113,7 +113,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected Job</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="mentor2_job_lbl">
@@ -156,7 +156,7 @@ color:rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>1110</x>
-      <y>240</y>
+      <y>280</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -372,7 +372,7 @@ color: black;
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>220</y>
+      <y>260</y>
       <width>291</width>
       <height>81</height>
      </rect>
@@ -383,14 +383,14 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected Myers Briggs</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="selc_abscore_lbl">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>220</y>
+      <x>690</x>
+      <y>260</y>
       <width>291</width>
       <height>81</height>
      </rect>
@@ -401,14 +401,14 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected AbScore</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="selc_email_lbl">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>220</y>
+      <x>800</x>
+      <y>260</y>
       <width>291</width>
       <height>81</height>
      </rect>
@@ -419,7 +419,7 @@ color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected Email</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -512,6 +512,112 @@ color:rgb(255, 255, 255);
      <rect>
       <x>800</x>
       <y>490</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>EMAIL</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>240</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>NAME</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>240</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>POSITION</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>240</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>MB TYPE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>240</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>ABLITY</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>240</y>
       <width>161</width>
       <height>21</height>
      </rect>
