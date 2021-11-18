@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
-    <height>940</height>
+    <width>1436</width>
+    <height>931</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="bgwidget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>100</x>
+     <y>-40</y>
      <width>1440</width>
      <height>940</height>
     </rect>
@@ -44,17 +44,17 @@ font: 75 16pt &quot;MS Shell Dlg 2&quot;;
      <string>Mentee | Landing Page</string>
     </property>
    </widget>
-   <widget class="QLabel" name="selc_mentor_lbl">
+   <widget class="QLabel" name="selc_mentor_name_lbl">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>40</x>
       <y>220</y>
       <width>481</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
@@ -62,10 +62,10 @@ color:rgb(255, 255, 255);
      <string>Selected Mentor Name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentor_matches_lbl">
+   <widget class="QLabel" name="mentor_results_lbl">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>30</x>
       <y>390</y>
       <width>481</width>
       <height>61</height>
@@ -73,11 +73,11 @@ color:rgb(255, 255, 255);
     </property>
     <property name="styleSheet">
      <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);
+color: black;
 </string>
     </property>
     <property name="text">
-     <string>Matches are...</string>
+     <string>Mentor Results:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="logout_btn">
@@ -98,53 +98,53 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Logout</string>
     </property>
    </widget>
-   <widget class="QLabel" name="selc_mentor_bio_lbl">
+   <widget class="QLabel" name="selc_job_lbl">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>430</x>
       <y>220</y>
       <width>291</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Selected Mentor Bio</string>
+     <string>Selected Job</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentor2_bio_lbl">
+   <widget class="QLabel" name="mentor2_job_lbl">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>540</y>
+      <x>390</x>
+      <y>570</y>
       <width>291</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentor 2 Bio</string>
+     <string>Mentor 2 Job</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentor2_lbl">
+   <widget class="QLabel" name="mentor2_name_lbl">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>540</y>
+      <x>50</x>
+      <y>570</y>
       <width>481</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
@@ -155,7 +155,7 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="selc_delete_btn">
     <property name="geometry">
      <rect>
-      <x>960</x>
+      <x>1040</x>
       <y>240</y>
       <width>161</width>
       <height>41</height>
@@ -164,41 +164,41 @@ color:rgb(255, 255, 255);
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Delete</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentor1_bio_lbl">
+   <widget class="QLabel" name="mentor1_job_lbl">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>450</y>
+      <x>390</x>
+      <y>480</y>
       <width>291</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>Mentor 1 Bio</string>
+     <string>Mentor 1 Job</string>
     </property>
    </widget>
-   <widget class="QLabel" name="mentor1_lbl">
+   <widget class="QLabel" name="mentor1_name_lbl">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>450</y>
+      <x>50</x>
+      <y>480</y>
       <width>481</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
@@ -209,7 +209,7 @@ color:rgb(255, 255, 255);
    <widget class="QPushButton" name="add1_btn">
     <property name="geometry">
      <rect>
-      <x>950</x>
+      <x>1040</x>
       <y>470</y>
       <width>161</width>
       <height>41</height>
@@ -218,7 +218,7 @@ color:rgb(255, 255, 255);
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Add</string>
@@ -227,7 +227,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="add2_btn">
     <property name="geometry">
      <rect>
-      <x>950</x>
+      <x>1040</x>
       <y>560</y>
       <width>161</width>
       <height>41</height>
@@ -236,7 +236,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="styleSheet">
      <string notr="true">border-radius: 20px;
 background-color: rgb(255, 255, 255);
-font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Add</string>
@@ -245,14 +245,14 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="myers_briggs_1">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>450</y>
+      <x>280</x>
+      <y>480</y>
       <width>291</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
@@ -263,19 +263,163 @@ color:rgb(255, 255, 255);
    <widget class="QLabel" name="myers_briggs_2">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>540</y>
+      <x>280</x>
+      <y>570</y>
       <width>291</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
      <string>Myers Briggs 2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mentor1_abscore_lbl">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>480</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Mentor 1 AbScore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mentor2_abscore_lbl">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>570</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Mentor 2 AbScore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mentor1_email_lbl">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>480</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Mentor 1 Email</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mentor2_email_lbl">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>570</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Mentor 2 Email</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="your_current_mentor_lbl">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>481</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+color: black;
+</string>
+    </property>
+    <property name="text">
+     <string>Your Current Mentor:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selc_myers_lbl">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>220</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Selected Myers Briggs</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selc_abscore_lbl">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>220</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Selected AbScore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selc_email_lbl">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>220</y>
+      <width>291</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Selected Email</string>
     </property>
    </widget>
   </widget>
