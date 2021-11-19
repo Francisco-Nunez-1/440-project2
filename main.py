@@ -1,9 +1,3 @@
-# TO DO
-# Pulling from data base to log in into login landing page
-# Matching algorithm
-# Pull and display info in login landing page
-
-
 # # Imports to run Qt5
 import sys
 from PyQt5.uic import loadUi
@@ -33,13 +27,6 @@ def goto_login():
     widget.addWidget(login)
     widget.setCurrentIndex(widget.currentIndex() + 1)
 
-
-# Work on this if there is time
-# def backpage_function(className):
-#     widget.addWidget(className)
-#     widget.setCurrentIndex(widget.currentIndex() + 1)
-
-
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
 class WelcomeScreen(QDialog):
@@ -52,12 +39,6 @@ class WelcomeScreen(QDialog):
         self.loginbtn.clicked.connect(goto_login)
         # this will command to go to gotocreateAccount function when the button is clicked
         self.createAccountbtn.clicked.connect(self.goto_CreateAccount)
-
-    # def goto_login(self):
-    #     # this will open the new login window in the current window by calling the .ui class
-    #     login = LoginScreen()
-    #     widget.addWidget(login)
-    #     widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_CreateAccount(self):
         # this will open the new create account window in the current window by calling the .ui class
@@ -88,43 +69,38 @@ class LoginScreen(QDialog):
         if len(typed_user) == 0 or len(typed_password) == 0:
             self.error_lbl.setText("Fields can't be blank, \nPlease fill in all fields ")
 
-        # *********************************** NEEDS WORK DONE TO IT **********************************************
-        # *******************************************************************************************************
-        # validate if user and password match
         else:
-            # conn = sqlite3.connect("DATABASE NAME HERE")
-            connection = mysqlconnect()
-            cursor = connection.cursor()
-            # this execute the query's
-            # cur = conn.cursor()
-            # query = 'SELECT password_COLUMN_HERE FROM TABLE_NAME_HERE WHERE username_COLUMN_NAME =\'' + typed_user + "\'"
+            try:
+                connection = mysqlconnect()
+                cursor = connection.cursor()
 
-            # Check validity of the username
-            # query = 'SELECT Email FROM Employees WHERE Email =\'' + typed_user + "\'"
-            # cursor.execute(query)
-            #
-            # result_username = str(cursor.fetchone()[0])
-            # print(result_username)
-
-            query = 'SELECT Password FROM Employees WHERE Email =\'' + typed_user + "\'"
-            cursor.execute(query)
-
-            # save to result_pass this will get the password from db and check it matches
-            # with what they typed in
-            # result_password = cursor.fetchone()
-            result_password = str(cursor.fetchone()[0])
-            print(result_password)
-
-            # if result_username == typed_user and result_password == typed_password:
-            if result_password == typed_password:
-                print("Successfully logged in")
-                self.error_lbl.setText("")
-                query = 'SELECT AdvisingRole FROM Employees WHERE Email =\'' + typed_user + "\'"
+                # Check validity of the username
+                query = 'SELECT Email FROM Employees WHERE Email =\'' + typed_user + "\'"
                 cursor.execute(query)
-                result_role = str(cursor.fetchone()[0])
-                print(result_role)
-                self.path(result_role, typed_user)
-            else:
+
+                result_username = str(cursor.fetchmany(size=1)[0][0])
+                print(result_username)
+
+                # Check the validity of the password
+                query = 'SELECT Password FROM Employees WHERE Email =\'' + typed_user + "\'"
+                cursor.execute(query)
+
+                # save to result_pass this will get the password from db and check it matches
+                # with what they typed in
+                result_password = str(cursor.fetchmany(size=1)[0][0])
+                print(result_password)
+
+                if result_username == typed_user and result_password == typed_password:
+                    print("Successfully logged in")
+                    self.error_lbl.setText("")
+                    query = 'SELECT AdvisingRole FROM Employees WHERE Email =\'' + typed_user + "\'"
+                    cursor.execute(query)
+                    result_role = str(cursor.fetchone()[0])
+                    print(result_role)
+                    self.path(result_role, typed_user)
+                else:
+                    self.error_lbl.setText("Invalid Username or Password")
+            except IndexError:
                 self.error_lbl.setText("Invalid Username or Password")
 
             cursor.close()
@@ -147,8 +123,6 @@ class LoginScreen(QDialog):
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
-
-# Still a working progress
 # Displays the mentee matches to the mentor
 class MentorLanding(QDialog):
     def __init__(self, user):
@@ -207,45 +181,11 @@ class MentorLanding(QDialog):
                     self.mentee5_job_lbl.setText(matches[4][3])
                     self.mentee5_email_lbl.setText(matches[4][4])
             else:
-                # Maybe set all labels to blank to begin with
                 print("There are no matches.")
                 self.mentee1_lbl.setText("No matches are found")
-                # self.mentee1_email_lbl.setText("")
-                #
-                # self.mentee2_lbl.setText("")
-                # self.mentee2_email_lbl.setText("")
-                #
-                # self.mentee3_lbl.setText("")
-                # self.mentee3_email_lbl.setText("")
-                #
-                # self.mentee3_lbl.setText("")
-                # self.mentee3_email_lbl.setText("")
-                #
-                # self.mentee4_lbl.setText("")
-                # self.mentee4_email_lbl.setText("")
-                #
-                # self.mentee5_lbl.setText("")
-                # self.mentee5_email_lbl.setText("")
+
         except IndexError:
             print("There are no matches.")
-            # self.mentee1_lbl.setText("No matches are found")
-            # self.mentee1_lbl.setText("")
-            # self.mentee1_email_lbl.setText("")
-            #
-            # self.mentee2_lbl.setText("")
-            # self.mentee2_email_lbl.setText("")
-            #
-            # self.mentee3_lbl.setText("")
-            # self.mentee3_email_lbl.setText("")
-            #
-            # self.mentee3_lbl.setText("")
-            # self.mentee3_email_lbl.setText("")
-            #
-            # self.mentee4_lbl.setText("")
-            # self.mentee4_email_lbl.setText("")
-            #
-            # self.mentee5_lbl.setText("")
-            # self.mentee5_email_lbl.setText("")
 
         self.logout_btn.clicked.connect(goto_login)
 
@@ -299,18 +239,8 @@ class MenteeLanding(QDialog):
         except IndexError:
             print("Error Found")
 
-
-
-
-
         self.info1_btn.clicked.connect(self.view_more1)
         self.info2_btn.clicked.connect(self.view_more2)
-
-
-
-
-
-
 
         self.add1_btn.clicked.connect(self.add_mentor_one)
         self.add2_btn.clicked.connect(self.add_mentor_two)
@@ -318,28 +248,17 @@ class MenteeLanding(QDialog):
 
         self.logout_btn.clicked.connect(goto_login)
 
-
-
-
-
-
     def view_more1(self):
         additional_info_pg = FirstAdditionalInfo(self.user, self.mentor1_email)
         widget.addWidget(additional_info_pg)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-
 
     def view_more2(self):
         additional_info_pg = SecondAdditionalInfo(self.user, self.mentor2_email)
         widget.addWidget(additional_info_pg)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-
-
-
-
-
-
+    # add the first mentor on the matches list
     def add_mentor_one(self):
         self.selc_mentor_name_lbl.setText(self.mentor1_name_lbl.text())
         self.selc_myers_lbl.setText(self.myers_briggs_1.text())
@@ -347,6 +266,7 @@ class MenteeLanding(QDialog):
         self.selc_abscore_lbl.setText(self.mentor1_abscore_lbl.text())
         self.selc_email_lbl.setText(self.mentor1_email_lbl.text())
 
+    # add the second mentor on the matches list
     def add_mentor_two(self):
         self.selc_mentor_name_lbl.setText(self.mentor2_name_lbl.text())
         self.selc_myers_lbl.setText(self.myers_briggs_2.text())
@@ -354,6 +274,7 @@ class MenteeLanding(QDialog):
         self.selc_abscore_lbl.setText(self.mentor2_abscore_lbl.text())
         self.selc_email_lbl.setText(self.mentor2_email_lbl.text())
 
+    # delete the selected mentor
     def delete_mentor(self):
         self.selc_mentor_name_lbl.setText('')
         self.selc_job_lbl.setText('')
@@ -362,11 +283,7 @@ class MenteeLanding(QDialog):
         self.selc_email_lbl.setText('')
 
 
-
-
-
-
-
+# Additional info for the first mentor on the matches list
 class FirstAdditionalInfo(QDialog):
     def __init__(self, user, mentor1):
         super(FirstAdditionalInfo, self).__init__()
@@ -374,29 +291,35 @@ class FirstAdditionalInfo(QDialog):
 
         self.back_btn.clicked.connect(self.backpage_function)
 
-        self.user = user
-        self.mentor1 = mentor1
+        try:
+            self.user = user
+            self.mentor1 = mentor1
 
-        connection = mysqlconnect()
-        cursor = connection.cursor()
+            connection = mysqlconnect()
+            cursor = connection.cursor()
 
-        query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor1}'"
-        cursor.execute(query)
+            query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor1}'"
+            cursor.execute(query)
 
-        info = cursor.fetchall()
-        for values in info:
-            self.view_YrsInIndustry_lbl.setText(str(values[0]))
-            self.view_YrsInComp_lbl.setText(str(values[1]))
-            self.view_hobby1_lbl.setText(values[2])
-            self.view_hobby2_lbl.setText(values[3])
-            self.view_hobby3_lbl.setText(values[4])
-            self.view_bio_lbl.setText(values[5])
+            info = cursor.fetchall()
+            for values in info:
+                self.view_YrsInIndustry_lbl.setText(str(values[0]))
+                self.view_YrsInComp_lbl.setText(str(values[1]))
+                self.view_hobby1_lbl.setText(values[2])
+                self.view_hobby2_lbl.setText(values[3])
+                self.view_hobby3_lbl.setText(values[4])
+                self.view_bio_lbl.setText(values[5])
+
+        except AttributeError:
+            print("Error")
 
     def backpage_function(self):
         mentee_landing = MenteeLanding(self.user)
         widget.addWidget(mentee_landing)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
+# Additional info for the second mentor on the matches list
 class SecondAdditionalInfo(QDialog):
     def __init__(self, user, mentor2):
         super(SecondAdditionalInfo, self).__init__()
@@ -429,13 +352,6 @@ class SecondAdditionalInfo(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-
-
-
-
-
-
-
 class CreateAccountScreen(QDialog):
     def __init__(self):
         super(CreateAccountScreen, self).__init__()
@@ -461,9 +377,7 @@ class CreateAccountScreen(QDialog):
         number = self.phonenumber_textbx.text()
         confirmPassword = self.confirmPassword_textbx.text()
         userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number}
-        # userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number,
-        #                  "department": [], "jobPosition": [], "myersBriggs": []}
-        # print(userDataPage1)
+
 
         # check fields arent blank and password matches before going to next page
         if len(fname) == 0 or len(lname) == 0 or len(email) == 0 or len(password) == 0 or len(number) == 0:
@@ -537,48 +451,12 @@ class SecondCreateAccountScreen(QDialog):
         else:
             self.error_lbl.setText("Please select if you are a\nMentor or Mentee ")
 
-            # connection = mysql.connector.connect(host='107.180.1.16',
-            #                                      database='cis440fall2021group1',
-            #                                      user='fall2021group1',
-            #                                      password='fall2021group1')
-
-            # connection = mysqlconnect()
-
-            # if connection.is_connected():
-            #     db_info = connection.get_server_info()
-            #     print("Connected to MySQL Server version ", db_info)
-            #     cursor = connection.cursor()
-            #     cursor.execute("select database();")
-            #     record = cursor.fetchone()
-            #     print("You're connected to database: ", record)
-
-            # Check if any of the fields are empty
         blank = ''
         if blank in self.userData.values():
             self.error_lbl.setText("Please fill in all fields")
             print("A field is empty")
         else:
-            # sql = "INSERT INTO Employees (FName, LName, Phone, Email, Password, AdvisingRole, MBType," \
-            #       "Department, JobPosition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            #
-            # val = (self.userData['fname'], self.userData['lname'], self.userData['phoneNumber'],
-            #        self.userData['email'], self.userData['password'],
-            #        advisingRole, myersBriggs, '0', department, jobPosition)
-            #
-            # cursor.execute(sql, val)
-            # connection.commit()
-            #
-            # print(cursor.rowcount, "record inserted.")
             self.check()
-
-        # except Exception as e:
-        #     print("Error while connecting to MySQL", e)
-
-        # finally:
-        #     if connection.is_connected():
-        #         cursor.close()
-        #         connection.close()
-        #         print("MySQL connection is closed")
 
     # Loads the corresponding form page depending on which advising role is selected
     def check(self):
