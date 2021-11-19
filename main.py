@@ -123,6 +123,7 @@ class LoginScreen(QDialog):
             widget.addWidget(mentee_login)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
 # Displays the mentee matches to the mentor
 class MentorLanding(QDialog):
     def __init__(self, user):
@@ -216,25 +217,34 @@ class MenteeLanding(QDialog):
         cursor.execute(query2)
 
         matches = cursor.fetchmany(size=2)
-        print(matches)
+        print(matches[0])
         try:
             if matches:
                 if matches[0]:
+                    self.mentor1 = matches[0]
                     self.mentor1_name_lbl.setText(matches[0][0] + " " + matches[0][1])
                     self.myers_briggs_1.setText(matches[0][2])
                     self.mentor1_job_lbl.setText(matches[0][3])
                     self.mentor1_abscore_lbl.setText(str(matches[0][4]))
                     self.mentor1_email_lbl.setText(matches[0][5])
+                else:
+                    self.info1_btn.hide()
+                    self.mentor1_name_lbl.setText("No Matches.")
 
                 if matches[1]:
+                    self.mentor2 = matches[1]
                     self.mentor2_name_lbl.setText(matches[1][0] + " " + matches[1][1])
                     self.myers_briggs_2.setText(matches[1][2])
                     self.mentor2_job_lbl.setText(matches[1][3])
                     self.mentor2_abscore_lbl.setText(str(matches[1][4]))
                     self.mentor2_email_lbl.setText(matches[1][5])
+                else:
+                    self.info2_btn.setVisible(False)
 
-            self.mentor1_email = matches[0][5]
-            self.mentor2_email = matches[1][5]
+
+
+            # self.mentor1_email = matches[0][5]
+            # self.mentor2_email = matches[1][5]
 
         except IndexError:
             print("Error Found")
@@ -249,12 +259,12 @@ class MenteeLanding(QDialog):
         self.logout_btn.clicked.connect(goto_login)
 
     def view_more1(self):
-        additional_info_pg = FirstAdditionalInfo(self.user, self.mentor1_email)
+        additional_info_pg = FirstAdditionalInfo(self.user, self.mentor1)
         widget.addWidget(additional_info_pg)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def view_more2(self):
-        additional_info_pg = SecondAdditionalInfo(self.user, self.mentor2_email)
+        additional_info_pg = SecondAdditionalInfo(self.user, self.mentor2)
         widget.addWidget(additional_info_pg)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -298,7 +308,7 @@ class FirstAdditionalInfo(QDialog):
             connection = mysqlconnect()
             cursor = connection.cursor()
 
-            query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor1}'"
+            query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor1[5]}'"
             cursor.execute(query)
 
             info = cursor.fetchall()
@@ -333,7 +343,7 @@ class SecondAdditionalInfo(QDialog):
         connection = mysqlconnect()
         cursor = connection.cursor()
 
-        query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor2}'"
+        query = f"SELECT YearsInd, YearsCo, Hobby1, Hobby2, Hobby3, Bio FROM Employees WHERE Email = '{self.mentor2[5]}'"
         cursor.execute(query)
 
         info = cursor.fetchall()
