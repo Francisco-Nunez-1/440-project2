@@ -1,3 +1,8 @@
+# TO DO
+# Pulling from data base to log in into login landing page
+# Matching algorithm
+# Pull and display info in login landing page
+
 
 # # Imports to run Qt5
 import sys
