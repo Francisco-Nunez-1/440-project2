@@ -27,6 +27,7 @@ def goto_login():
     widget.addWidget(login)
     widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
 # Show the welcome_screen, created class that will have objects,
 # and objects have variables like labels we created in Qt5 app and let pyqt5 do it behind the scenes
 class WelcomeScreen(QDialog):
@@ -217,43 +218,42 @@ class MenteeLanding(QDialog):
         cursor.execute(query2)
 
         matches = cursor.fetchmany(size=2)
-        print(matches[0])
+
+        if len(matches) == 0:
+            self.info1_btn.hide()
+            self.add1_btn.hide()
+            self.mentor1_name_lbl.setText("No Matches.")
+            self.info2_btn.hide()
+            self.add2_btn.hide()
+
+        elif len(matches) == 1:
+            self.info2_btn.hide()
+            self.add2_btn.hide()
+
         try:
-            if matches:
-                if matches[0]:
-                    self.mentor1 = matches[0]
-                    self.mentor1_name_lbl.setText(matches[0][0] + " " + matches[0][1])
-                    self.myers_briggs_1.setText(matches[0][2])
-                    self.mentor1_job_lbl.setText(matches[0][3])
-                    self.mentor1_abscore_lbl.setText(str(matches[0][4]))
-                    self.mentor1_email_lbl.setText(matches[0][5])
-                else:
-                    self.info1_btn.hide()
-                    self.mentor1_name_lbl.setText("No Matches.")
+            if matches[0]:
+                self.mentor1 = matches[0]
+                self.mentor1_name_lbl.setText(matches[0][0] + " " + matches[0][1])
+                self.myers_briggs_1.setText(matches[0][2])
+                self.mentor1_job_lbl.setText(matches[0][3])
+                self.mentor1_abscore_lbl.setText(str(matches[0][4]))
+                self.mentor1_email_lbl.setText(matches[0][5])
+                self.info1_btn.clicked.connect(self.view_more1)
+                self.add1_btn.clicked.connect(self.add_mentor_one)
 
-                if matches[1]:
-                    self.mentor2 = matches[1]
-                    self.mentor2_name_lbl.setText(matches[1][0] + " " + matches[1][1])
-                    self.myers_briggs_2.setText(matches[1][2])
-                    self.mentor2_job_lbl.setText(matches[1][3])
-                    self.mentor2_abscore_lbl.setText(str(matches[1][4]))
-                    self.mentor2_email_lbl.setText(matches[1][5])
-                else:
-                    self.info2_btn.setVisible(False)
-
-
-
-            # self.mentor1_email = matches[0][5]
-            # self.mentor2_email = matches[1][5]
+            if matches[1]:
+                self.mentor2 = matches[1]
+                self.mentor2_name_lbl.setText(matches[1][0] + " " + matches[1][1])
+                self.myers_briggs_2.setText(matches[1][2])
+                self.mentor2_job_lbl.setText(matches[1][3])
+                self.mentor2_abscore_lbl.setText(str(matches[1][4]))
+                self.mentor2_email_lbl.setText(matches[1][5])
+                self.info2_btn.clicked.connect(self.view_more2)
+                self.add2_btn.clicked.connect(self.add_mentor_two)
 
         except IndexError:
             print("Error Found")
 
-        self.info1_btn.clicked.connect(self.view_more1)
-        self.info2_btn.clicked.connect(self.view_more2)
-
-        self.add1_btn.clicked.connect(self.add_mentor_one)
-        self.add2_btn.clicked.connect(self.add_mentor_two)
         self.selc_delete_btn.clicked.connect(self.delete_mentor)
 
         self.logout_btn.clicked.connect(goto_login)
@@ -387,7 +387,6 @@ class CreateAccountScreen(QDialog):
         number = self.phonenumber_textbx.text()
         confirmPassword = self.confirmPassword_textbx.text()
         userDataPage1 = {"fname": fname, "lname": lname, "email": email, "password": password, "phoneNumber": number}
-
 
         # check fields arent blank and password matches before going to next page
         if len(fname) == 0 or len(lname) == 0 or len(email) == 0 or len(password) == 0 or len(number) == 0:
